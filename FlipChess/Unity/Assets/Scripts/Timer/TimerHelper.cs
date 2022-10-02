@@ -4,14 +4,10 @@ using UnityEngine;
 
 namespace Dreamwear
 {
-    public class Timer : MonoBehaviour
+    public class TimerHelper : MonoBehaviour
     {
         private readonly string m_updateEventName = "Update";
         private readonly string m_fixedupdateEventName = "FixedUpdate";
-        void Awake()
-        {
-            
-        }
 
         void Update()
         {

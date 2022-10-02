@@ -1,4 +1,3 @@
-using System.Net.WebSockets;
 using UnityEngine;
 
 namespace Dreamwear
@@ -17,6 +16,7 @@ namespace Dreamwear
         public void OnClickDisplay()
         {
             m_curTime = Time.time;
+            Destroy(this);
         }
     }
 }
