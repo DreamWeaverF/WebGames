@@ -10,6 +10,9 @@ namespace Dreamwear
             builder.Logging.AddDebug();
             builder.Services.AddRazorPages();
             builder.Services.AddControllers();
+            builder.Services.AddSingleton<MessageRequestParseController>();
+            builder.Services.AddSingleton<UserController>();
+
             var app = builder.Build();
             app.UseWebSockets();
             app.MapControllers();

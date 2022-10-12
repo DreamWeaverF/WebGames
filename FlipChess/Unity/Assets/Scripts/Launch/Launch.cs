@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Dreamwear
+namespace GameLaunch
 {
-    public class Launch : MonoBehaviourEx
+    public class Launch : MonoBehaviour
     {
-        private readonly string m_sceneName = "Loading";
+        private readonly string m_loadingSceneName = "Loading";
+        private readonly string m_serverSceneName = "Server";
 
         void Awake()
         {
@@ -16,8 +17,12 @@ namespace Dreamwear
 
         IEnumerator LoadScene()
         {
-            AsyncOperation asy = SceneManager.LoadSceneAsync(m_sceneName);
-            asy.allowSceneActivation = true;
+            AsyncOperation asy = SceneManager.LoadSceneAsync(m_serverSceneName, LoadSceneMode.Additive);
+            yield return asy;
+            yield return 10;
+            asy = SceneManager.LoadSceneAsync(m_loadingSceneName, LoadSceneMode.Additive);
+            yield return asy;
+            asy = SceneManager.UnloadSceneAsync(this.gameObject.name);
             yield return asy;
 
         }
