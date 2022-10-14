@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\Common\Message\PlayChess\MessageRequestPlayChess.cs" />
     <Compile Include="Assets\Scripts\Common\Message\UserData\MessageRequestUserData.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncName.cs" />
+    <Compile Include="Assets\Scripts\Common\Attribute\AutoGenSOClassAttribute.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AMessageNotice.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AdmitDefeat\MessageRequestAdmitDefeat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CancelMatchFight\MessageRequestCancelMatchFight.cs" />
@@ -94,7 +95,8 @@
     <Compile Include="Assets\Scripts\Common\Message\Login\MessageResponseLogin.cs" />
     <Compile Include="Assets\Scripts\Common\Data\FightData.cs" />
     <Compile Include="Assets\Scripts\Common\Config\ConfigChess.cs" />
-    <Compile Include="Assets\Scripts\Common\Attribute\AutoGenSOClassAttribute.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\CommonError\MessageNoticeError.cs" />
+    <Compile Include="Assets\Scripts\Common\Launch\LaunchType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Common\GameCommon.asmdef" />
@@ -399,6 +401,9 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>Assets\Plugins\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
@@ -795,9 +800,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityWebSocket.Runtime.csproj">
-      <Project>{2B87E773-3463-ED46-47B2-141BECA42843}</Project>
-      <Name>UnityWebSocket.Runtime</Name>
+    <ProjectReference Include="ETTask.csproj">
+      <Project>{DB8C7E8B-745B-0095-CA7E-2A572AF8F39C}</Project>
+      <Name>ETTask</Name>
     </ProjectReference>
     <ProjectReference Include="MessagePack.csproj">
       <Project>{84B17D6D-76A9-1856-5DF6-BCD3FE192693}</Project>
@@ -806,10 +811,6 @@
     <ProjectReference Include="MessagePack.Annotations.csproj">
       <Project>{FBAD5CEA-E3A7-5984-B710-3B26BB877006}</Project>
       <Name>MessagePack.Annotations</Name>
-    </ProjectReference>
-    <ProjectReference Include="ETTask.csproj">
-      <Project>{DB8C7E8B-745B-0095-CA7E-2A572AF8F39C}</Project>
-      <Name>ETTask</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

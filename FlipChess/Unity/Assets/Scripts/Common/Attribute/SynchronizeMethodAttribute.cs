@@ -8,6 +8,6 @@ namespace GameCommon
     [AttributeUsage(AttributeTargets.Method)]
     public class SynchronizeMethodAttribute : BaseAttribute
     {
-        public Enum_SyncName SyncName;
+        public SyncName SyncName;
     }
 }

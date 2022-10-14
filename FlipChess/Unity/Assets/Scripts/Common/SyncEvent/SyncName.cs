@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace GameCommon
 {
-    public enum Enum_SyncName
+    public enum SyncName
     {
         None,
 
         MessageRequestSender,
+        MessageNoticeSender,
     }
 }

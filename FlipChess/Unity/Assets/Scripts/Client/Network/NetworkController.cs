@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using ET;
 using MessagePack;
 using GameCommon;
-using System.Net.Sockets;
-using System.Net;
-using System.Threading;
-using System;
 
 namespace GameClient
 {
@@ -30,7 +26,7 @@ namespace GameClient
             m_socket.OnError += OnSocketError;
             m_socket.ConnectAsync();
         }
-        [SynchronizeMethod(SyncName = Enum_SyncName.MessageRequestSender)]
+        [SynchronizeMethod(SyncName = SyncName.MessageRequestSender)]
         private ETTask<AMessageResponse> OnSendMessage(AMessageRequest request)
         {
             byte[] bytes = MessagePackSerializer.Serialize<IMessage>(request, MessagePackSerializerOptions.Standard);
@@ -59,7 +55,7 @@ namespace GameClient
         }
         private void OnSocketOpen(object sender, OpenEventArgs e)
         {
-            Debug.Log("SocketOpen");
+            Debug.Log("Client SocketOpen");
             TestCode();
         }
         private void OnSocketClose(object sender, CloseEventArgs e)
@@ -67,7 +63,7 @@ namespace GameClient
 
         }
 
-        private void OnSocketError(object sender, UnityWebSocket.ErrorEventArgs e)
+        private void OnSocketError(object sender, ErrorEventArgs e)
         {
 
         }

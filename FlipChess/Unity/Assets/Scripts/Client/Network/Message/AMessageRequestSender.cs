@@ -9,7 +9,7 @@ namespace GameClient
     {
         public virtual async Task<T2> SendMessage(T1 request)
         {
-            ETTask<AMessageResponse> task = Enum_SyncName.MessageRequestSender.BroadcastSyncEvent<AMessageRequest, ETTask<AMessageResponse>>(request);
+            ETTask<AMessageResponse> task = SyncName.MessageRequestSender.BroadcastSyncEvent<AMessageRequest, ETTask<AMessageResponse>>(request);
             return await task as T2;
         }
     }

@@ -8,8 +8,8 @@ namespace GameCommon
 {
     class SyncRepository
     {
-        private Dictionary<Enum_SyncName, ISyncAction> m_syncActionDict = new Dictionary<Enum_SyncName, ISyncAction>();
-        private Dictionary<Enum_SyncName, ISyncFunc> m_syncFuncDict = new Dictionary<Enum_SyncName, ISyncFunc>();
+        private Dictionary<SyncName, ISyncAction> m_syncActionDict = new Dictionary<SyncName, ISyncAction>();
+        private Dictionary<SyncName, ISyncFunc> m_syncFuncDict = new Dictionary<SyncName, ISyncFunc>();
 
         private MethodInfo m_registerSyncActionMethod0;
         private MethodInfo m_registerSyncActionMethod1;
@@ -111,7 +111,7 @@ namespace GameCommon
                 }
             }
         }
-        private void RegisterSyncAction0(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void RegisterSyncAction0(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction actionEvnet))
             {
@@ -126,7 +126,7 @@ namespace GameCommon
             SyncAction tempSyncAction = actionEvnet as SyncAction;
             tempSyncAction += del as Action;
         }
-        private void RegisterSyncAction1<T1>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void RegisterSyncAction1<T1>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction actionEvnet))
             {
@@ -141,7 +141,7 @@ namespace GameCommon
             SyncAction<T1> tempSyncAction = actionEvnet as SyncAction<T1>;
             tempSyncAction += del as Action<T1>;
         }
-        private void RegisterSyncAction2<T1, T2>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void RegisterSyncAction2<T1, T2>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction actionEvnet))
             {
@@ -156,7 +156,7 @@ namespace GameCommon
             SyncAction<T1, T2> tempSyncAction = actionEvnet as SyncAction<T1, T2>;
             tempSyncAction += del as Action<T1, T2>;
         }
-        private void RegisterSyncFunc0<T1>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void RegisterSyncFunc0<T1>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncFuncDict.TryGetValue(syncName, out ISyncFunc funcEvnet))
             {
@@ -171,7 +171,7 @@ namespace GameCommon
             SyncFunc<T1> tempSyncFunc = funcEvnet as SyncFunc<T1>;
             tempSyncFunc += del as Func<T1>;
         }
-        private void RegisterSyncFunc1<T1, T2>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void RegisterSyncFunc1<T1, T2>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncFuncDict.TryGetValue(syncName, out ISyncFunc funcEvnet))
             {
@@ -186,7 +186,7 @@ namespace GameCommon
             SyncFunc<T1,T2> tempSyncFunc = funcEvnet as SyncFunc<T1,T2>;
             tempSyncFunc += del as Func<T1,T2>;
         }
-        private void RegisterSyncFunc2<T1, T2, T3>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void RegisterSyncFunc2<T1, T2, T3>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncFuncDict.TryGetValue(syncName, out ISyncFunc funcEvnet))
             {
@@ -267,7 +267,7 @@ namespace GameCommon
                 }
             }
         }
-        private void UnRegisterSyncAction0(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void UnRegisterSyncAction0(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction actionEvnet))
             {
@@ -286,7 +286,7 @@ namespace GameCommon
             }
             m_syncActionDict.Remove(syncName);
         }
-        private void UnRegisterSyncAction1<T1>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void UnRegisterSyncAction1<T1>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction actionEvnet))
             {
@@ -305,7 +305,7 @@ namespace GameCommon
             }
             m_syncActionDict.Remove(syncName);
         }
-        private void UnRegisterSyncAction2<T1, T2>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void UnRegisterSyncAction2<T1, T2>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction actionEvnet))
             {
@@ -324,7 +324,7 @@ namespace GameCommon
             }
             m_syncActionDict.Remove(syncName);
         }
-        private void UnRegisterSyncFunc0<T1>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void UnRegisterSyncFunc0<T1>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncFuncDict.TryGetValue(syncName, out ISyncFunc funcEvnet))
             {
@@ -343,7 +343,7 @@ namespace GameCommon
             }
             m_syncFuncDict.Remove(syncName);
         }
-        private void UnRegisterSyncFunc1<T1, T2>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void UnRegisterSyncFunc1<T1, T2>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncFuncDict.TryGetValue(syncName, out ISyncFunc funcEvnet))
             {
@@ -362,7 +362,7 @@ namespace GameCommon
             }
             m_syncFuncDict.Remove(syncName);
         }
-        private void UnRegisterSyncFunc2<T1, T2, T3>(MethodInfo methodInfo, object target, Enum_SyncName syncName)
+        private void UnRegisterSyncFunc2<T1, T2, T3>(MethodInfo methodInfo, object target, SyncName syncName)
         {
             if (!m_syncFuncDict.TryGetValue(syncName, out ISyncFunc funcEvnet))
             {
@@ -384,7 +384,7 @@ namespace GameCommon
         #endregion
 
         #region Broadcast
-        public void BroadcastSyncEvent(Enum_SyncName syncName)
+        public void BroadcastSyncEvent(SyncName syncName)
         {
             if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction syncAction))
             {
@@ -397,7 +397,7 @@ namespace GameCommon
             }
             (syncAction as SyncAction).Invoke();
         }
-        public void BroadcastSyncEvent<T1>(Enum_SyncName syncName, T1 value1)
+        public void BroadcastSyncEvent<T1>(SyncName syncName, T1 value1)
         {
             if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction syncAction))
             {
@@ -410,7 +410,7 @@ namespace GameCommon
             }
             (syncAction as SyncAction<T1>).Invoke(value1);
         }
-        public void BroadcastSyncEvent<T1, T2>(Enum_SyncName syncName, T1 value1, T2 value2)
+        public void BroadcastSyncEvent<T1, T2>(SyncName syncName, T1 value1, T2 value2)
         {
             if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction syncAction))
             {
@@ -424,7 +424,7 @@ namespace GameCommon
             (syncAction as SyncAction<T1, T2>).Invoke(value1, value2);
         }
 
-        public T1 BroadcastSyncEvent<T1>(Enum_SyncName syncName)
+        public T1 BroadcastSyncEvent<T1>(SyncName syncName)
         {
             if (!m_syncFuncDict.TryGetValue(syncName, out ISyncFunc syncFunc))
             {
@@ -437,7 +437,7 @@ namespace GameCommon
             }
             return (syncFunc as SyncFunc<T1>).Invoke();
         }
-        public T2 BroadcastSyncEvent<T1,T2>(Enum_SyncName syncName,T1 value1)
+        public T2 BroadcastSyncEvent<T1,T2>(SyncName syncName,T1 value1)
         {
             if (!m_syncFuncDict.TryGetValue(syncName, out ISyncFunc syncFunc))
             {
@@ -450,7 +450,7 @@ namespace GameCommon
             }
             return (syncFunc as SyncFunc<T1,T2>).Invoke(value1);
         }
-        public T3 BroadcastSyncEvent<T1,T2,T3>(Enum_SyncName syncName, T1 value1, T2 value2)
+        public T3 BroadcastSyncEvent<T1,T2,T3>(SyncName syncName, T1 value1, T2 value2)
         {
             if (!m_syncFuncDict.TryGetValue(syncName, out ISyncFunc syncFunc))
             {
@@ -482,27 +482,27 @@ namespace GameCommon
         {
             m_repository.RegisterSyncClass(classType, classObject);
         }
-        public static void BroadcastSyncEvent(this Enum_SyncName syncName)
+        public static void BroadcastSyncEvent(this SyncName syncName)
         {
             m_repository.BroadcastSyncEvent(syncName);
         }
-        public static void BroadcastSyncEvent<T1>(this Enum_SyncName syncName, T1 value1)
+        public static void BroadcastSyncEvent<T1>(this SyncName syncName, T1 value1)
         {
             m_repository.BroadcastSyncEvent(syncName, value1);
         }
-        public static void BroadcastSyncEvent<T1, T2>(this Enum_SyncName syncName, T1 value1, T2 value2)
+        public static void BroadcastSyncEvent<T1, T2>(this SyncName syncName, T1 value1, T2 value2)
         {
             m_repository.BroadcastSyncEvent(syncName, value1, value2);
         }
-        public static T1 BroadcastSyncEvent<T1>(this Enum_SyncName syncName)
+        public static T1 BroadcastSyncEvent<T1>(this SyncName syncName)
         {
             return m_repository.BroadcastSyncEvent<T1>(syncName);
         }
-        public static T2 BroadcastSyncEvent<T1,T2>(this Enum_SyncName syncName,T1 value1)
+        public static T2 BroadcastSyncEvent<T1,T2>(this SyncName syncName,T1 value1)
         {
             return m_repository.BroadcastSyncEvent<T1,T2>(syncName, value1);
         }
-        public static T3 BroadcastSyncEvent<T1,T2,T3>(this Enum_SyncName syncName, T1 value1, T2 value2)
+        public static T3 BroadcastSyncEvent<T1,T2,T3>(this SyncName syncName, T1 value1, T2 value2)
         {
             return m_repository.BroadcastSyncEvent<T1,T2,T3>(syncName, value1,value2);
         }

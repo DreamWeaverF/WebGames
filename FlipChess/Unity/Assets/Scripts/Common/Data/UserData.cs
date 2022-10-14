@@ -23,7 +23,7 @@ namespace GameCommon
         [IgnoreMember]
         public long LastMessageTime { get; set; }
         [IgnoreMember]
-        public string? SocketId { get; set; }
+        public string SocketId { get; set; }
 
 
     }

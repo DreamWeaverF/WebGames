@@ -1,4 +1,5 @@
 using MessagePack;
+using System.Collections.Generic;
 
 namespace GameCommon
 {
@@ -13,5 +14,14 @@ namespace GameCommon
         public string UserHeadIcon { get; set; }
         [Key(4)]
         public string UserScore { get; set; }
+    }
+
+    [MessagePackObject]
+    public class RankListData
+    {
+        [Key(1)]
+        public int RankId { get; set; }
+        [Key(2)]
+        public List<RankData> RankDatas { get; set; }
     }
 }

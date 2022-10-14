@@ -1,117 +1,88 @@
 using GameCommon;
 using System;
-using System.Threading.Tasks;
-using System.Threading;
-using WebSocketSharp.Net;
-using WebSocketSharp.Net.WebSockets;
 using WebSocketSharp;
 using MessagePack;
+using WebSocketSharp.Server;
+using UnityEngine;
+using System.Collections.Generic;
 
 namespace GameServer
 {
     public class NetworkController : MonoBehaviourEx
     {
-        private string m_ipAddress = "http://127.0.0.1:50001/connect/";
+        [SerializeField]
+        private ConfigServerLaunch m_configServerLaunch;
 
-        private string m_wsAddress = "ws://127.0.0.1:50011/connect";
+        private Dictionary<long, UserNetBehavior> m_userNets = new Dictionary<long, UserNetBehavior>();
+        private Dictionary<Type, AMessageRequestHander> m_requestHanders = new Dictionary<Type, AMessageRequestHander>();
+        private MessageNoticeError m_noticeError = new MessageNoticeError();
 
-        private HttpListener m_listener;
-        private Thread m_listenerThread;
-        async void Start()
+        [SerializeField]
+        private MessageRequestLoginHander m_loginHander;
+
+        void Start()
         {
-            m_listener = new HttpListener();
-            m_listener.Prefixes.Add(m_ipAddress);
-            m_listener.Start();
-
-            m_listenerThread = new Thread(StartListener);
-            m_listenerThread.Start();
-
-            //Debug.Log("StartListen");
-
-            await Task.Delay(1000);
-
-            //var uri = new Uri(m_wsAddress);
-            //System.Net.WebSockets.ClientWebSocket socket = new System.Net.WebSockets.ClientWebSocket();
-            //await socket.ConnectAsync(uri, CancellationToken.None);
-            ////
-            //Debug.Log("222");
+            WebSocketServer wss = new WebSocketServer(m_configServerLaunch.ListenerPort);
+            wss.AddWebSocketService<UserNetBehavior>("/connect", OnConnectService);
+            wss.Start();
         }
-
-        private void StartListener()
+        private void OnConnectService(UserNetBehavior webSocketBehavior)
         {
-            while (true)
-            {
-                var result = m_listener.BeginGetContext(ListenerCallback, m_listener);
-                result.AsyncWaitHandle.WaitOne();
-            }
+            Debug.Log("Service Connect");
+            webSocketBehavior.OnActionMessage = OnMessage;
+            webSocketBehavior.OnActionClose = OnClose;
         }
-
-        private void ListenerCallback(IAsyncResult result)
+        private async void OnMessage(long userId, MessageEventArgs e, UserNetBehavior net)
         {
-            var context = m_listener.EndGetContext(result);
-
-            if (!context.Request.IsWebSocketRequest)
+            byte[] bytes;
+            IMessage message = MessagePackSerializer.Deserialize<IMessage>(e.RawData);
+            if(message == null)
             {
-                context.Response.StatusCode = 400;
-                context.Response.Close();
+                m_noticeError.ErrorCode = MessageErrorCode.MessageError;
+                bytes = MessagePackSerializer.Serialize<IMessage>(m_noticeError);
+                net.SendMessage(bytes, true);
                 return;
             }
-            HttpListenerWebSocketContext webSocketContext = context.AcceptWebSocket("binary");
-            WebSocket webSocket = webSocketContext.WebSocket;
-
-            webSocket.OnMessage += OnMessage;
-
-
-            //byte[] buffer = new byte[1024];
-            //收到登录消息
-            //var result = await webSocket.OnMessage(new ArraySegment<byte>(buffer), CancellationToken.None);
-
+            if(!(message is AMessageRequest))
+            {
+                m_noticeError.ErrorCode = MessageErrorCode.MessageError;
+                bytes = MessagePackSerializer.Serialize<IMessage>(m_noticeError);
+                net.SendMessage(bytes, true);
+                return;
+            }
+            AMessageRequest request = message as AMessageRequest;
+            Type type = message.GetType();
+            if(type == typeof(MessageRequestLogin))
+            {
+                if(userId != 0)
+                {
+                    //
+                }
+                userId = 0;
+                MessageResponseLogin responseLogin = await m_loginHander.OnMessage(userId, request) as MessageResponseLogin;
+                if(responseLogin.ErrorCode == MessageErrorCode.Success)
+                {
+                    net.UserId = responseLogin.UserId;
+                    m_userNets.Add(responseLogin.UserId, net);
+                }
+                bytes = MessagePackSerializer.Serialize<IMessage>(responseLogin);
+                net.SendMessage(bytes, true);
+                return;
+            }
+            if(!m_requestHanders.TryGetValue(type, out AMessageRequestHander hander))
+            {
+                m_noticeError.ErrorCode = MessageErrorCode.MessageError;
+                bytes = MessagePackSerializer.Serialize<IMessage>(m_noticeError);
+                net.SendMessage(bytes, true);
+                return;
+            }
+            AMessageResponse response = await hander.OnMessage(userId, request);
+            bytes = MessagePackSerializer.Serialize<IMessage>(response);
+            net.SendMessage(bytes);
         }
-
-        public void OnMessage(object sender, MessageEventArgs args)
+        private void OnClose(long useId)
         {
-            MessageRequestLogin requestLogin = MessagePackSerializer.Deserialize<IMessage>(args.RawData) as MessageRequestLogin;
-
-            MessageResponseLogin response = new MessageResponseLogin();
-            response.RpcId = requestLogin.RpcId;
-            response.UserId = 100;
-            var buffer = MessagePackSerializer.Serialize<IMessage>(response);
-            (sender as WebSocket).SendAsync(buffer, null);
+            m_userNets.Remove(useId);
         }
-
-        //private async void StartListen()
-        //{
-        //    m_listener = new HttpListener();
-        //    m_listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
-        //    m_listener.Prefixes.Add(m_ipAddress);
-        //    m_listener.Start();
-
-        //    Debug.Log("StartListen");
-
-        //    while (true)
-        //    {
-        //        HttpListenerContext context = await m_listener.GetContextAsync();
-        //        if (!context.Request.IsWebSocketRequest)
-        //        {
-        //            context.Response.StatusCode = 400;
-        //            context.Response.Close();
-        //            Debug.LogWarning("连接错误");
-        //            continue;
-        //        }
-        //        Debug.Log("Accepted");
-        //        var wsContext = await context.AcceptWebSocketAsync(null);
-        //        var webSocket = wsContext.WebSocket;
-        //        byte[] buffer = new byte[1024];
-        //        WebSocketReceiveResult received = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-        //        while (received.MessageType != WebSocketMessageType.Close)
-        //        {
-        //            await webSocket.SendAsync(new ArraySegment<byte>(buffer, 0, received.Count), received.MessageType, received.EndOfMessage, CancellationToken.None);
-        //            received = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-        //        }
-        //        await webSocket.CloseAsync(received.CloseStatus.Value, received.CloseStatusDescription, CancellationToken.None);
-        //        webSocket.Dispose();
-        //        Console.WriteLine("Finished");
-        //    }
-        //}
     }
 }

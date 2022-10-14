@@ -56,9 +56,18 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Server\Network\Message\AMessageNoticeSender.cs" />
     <Compile Include="Assets\Scripts\Server\Network\NetworkController.cs" />
-    <Compile Include="Assets\Scripts\Server\Network\AMessageRequestHander.cs" />
-    <Compile Include="Assets\Scripts\Server\Network\AMessageNoticeSender.cs" />
+    <Compile Include="Assets\Scripts\Server\Network\UserNetBehavior.cs" />
+    <Compile Include="Assets\Scripts\Server\Database\DatabaseBase.cs" />
+    <Compile Include="Assets\Scripts\Server\Network\Message\Login\MessageRequestLoginHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Network\Message\AMessageRequestHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Database\DatabaseConnectPool.cs" />
+    <Compile Include="Assets\Scripts\Server\Database\DatabaseCommandHelper.cs" />
+    <Compile Include="Assets\Scripts\Server\Database\Account\DatabaseAccount.cs" />
+    <Compile Include="Assets\Scripts\Server\Database\Rank\DatabaseRank.cs" />
+    <Compile Include="Assets\Scripts\Server\Database\User\DatabaseUser.cs" />
+    <Compile Include="Assets\Scripts\Server\Config\ConfigServerLaunch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Server\GameServer.asmdef" />
@@ -363,6 +372,9 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>Assets\Plugins\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
@@ -759,21 +771,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="ETTask.csproj">
+      <Project>{DB8C7E8B-745B-0095-CA7E-2A572AF8F39C}</Project>
+      <Name>ETTask</Name>
+    </ProjectReference>
     <ProjectReference Include="MessagePack.csproj">
       <Project>{84B17D6D-76A9-1856-5DF6-BCD3FE192693}</Project>
       <Name>MessagePack</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityWebSocket.Runtime.csproj">
-      <Project>{2B87E773-3463-ED46-47B2-141BECA42843}</Project>
-      <Name>UnityWebSocket.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="GameCommon.csproj">
-      <Project>{469CB5C6-FE28-CB30-5A39-DC9C4F18255D}</Project>
-      <Name>GameCommon</Name>
+    <ProjectReference Include="MessagePack.Annotations.csproj">
+      <Project>{FBAD5CEA-E3A7-5984-B710-3B26BB877006}</Project>
+      <Name>MessagePack.Annotations</Name>
     </ProjectReference>
     <ProjectReference Include="websocket-sharp.csproj">
       <Project>{5D0FC3E0-0CB9-CB57-9F38-801D0121C480}</Project>
       <Name>websocket-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="GameCommon.csproj">
+      <Project>{469CB5C6-FE28-CB30-5A39-DC9C4F18255D}</Project>
+      <Name>GameCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
