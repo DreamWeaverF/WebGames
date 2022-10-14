@@ -16,7 +16,7 @@ namespace GameServer
 
     }
 
-    public class DatabaseBase<TElement,TKey> : ScriptableObject, ISerializationCallbackReceiver where TElement : DatabaseBaseElement
+    public class DatabaseBase<TElement,TKey> : ScriptableObject where TElement : DatabaseBaseElement
     {
         [SerializeField]
         private DatabaseConnectPool m_connectPool;
@@ -25,7 +25,7 @@ namespace GameServer
         private FieldInfo[] m_fields;
         private MethodInfo m_getFieldValueAsyncMethod;
 
-        public void OnAfterDeserialize()
+        public void Start()
         {
             m_tableName = GetType().Name;
             Type typeElement = typeof(TElement);
@@ -73,7 +73,7 @@ namespace GameServer
         }
         public async Task<long> TrySelectCount(TKey keyValue)
         {
-            try
+            //try
             {
                 MySqlConnection connection = await TryGetMySqlConnection();
                 MySqlCommand cmd = connection.CreateCommand();
@@ -89,10 +89,10 @@ namespace GameServer
                     }
                 }
             }
-            catch (Exception e)
-            {
-                Debug.LogError(e.ToString());
-            }
+            //catch (Exception e)
+            //{
+            //    Debug.LogError(e.ToString());
+            //}
             return 0;
         }
         public async Task<bool> TrySelect(TElement element, TKey keyValue)
@@ -120,7 +120,7 @@ namespace GameServer
                     {
                         for (int i = 0; i < m_fields.Length; i++)
                         {
-                            MethodInfo userMethod = m_getFieldValueAsyncMethod.MakeGenericMethod(m_fields[i].GetType());
+                            MethodInfo userMethod = m_getFieldValueAsyncMethod.MakeGenericMethod(m_fields[i].FieldType);
                             object dbValue = userMethod.Invoke(this, new object[] { dbReader, i });
                             m_fields[i].SetValue(element, dbValue);
                         }
@@ -135,7 +135,7 @@ namespace GameServer
             }
             return false;
         }
-        protected async Task<bool> TryInsertInto(TElement element)
+        public async Task<bool> TryInsertInto(TElement element)
         {
             try
             {
@@ -179,7 +179,7 @@ namespace GameServer
             }
             return false;
         }
-        protected async Task<bool> TryUpdate(TElement element)
+        public async Task<bool> TryUpdate(TElement element)
         {
             try
             {
@@ -223,7 +223,6 @@ namespace GameServer
             }
             return false;
         }
-
         protected async Task<T> GetFieldValueAsync<T>(DbDataReader dbReader, int index)
         {
             return await dbReader.GetFieldValueAsync<T>(index);

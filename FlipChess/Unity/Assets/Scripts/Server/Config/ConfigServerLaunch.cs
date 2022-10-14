@@ -1,34 +1,26 @@
 using GameCommon;
-using MessagePack;
 using System;
-using System.Xml.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameServer
 {
-    [MessagePackObject]
+    [Serializable]
     public class ConfigServerLaunchElement : ConfigBaseElement
     {
-        [Key(2)]
-        public int ListenerPort { get; set; }
-        [Key(3)]
-        public string MySqlHost { get; set; }
-        [Key(4)]
-        public int MySqlPort { get; set; }
-        [Key(5)]
-        public string MySqlUserId { get; set; }
-        [Key(6)]
-        public string MySqlPassword { get; set; }
-        [Key(7)]
-        public string MySqlSchemaName { get; set; }
-        [Key(7)]
-        public string MySqlCharacter { get; set; }
+        public int ListenerPort;
+        public string MySqlHost;
+        public int MySqlPort;
+        public string MySqlUserId;
+        public string MySqlPassword;
+        public string MySqlSchemaName;
+        public string MySqlCharacter;
     }
-
+    [GenConfigClass]
     public class ConfigServerLaunch : ConfigBase<ConfigServerLaunchElement>
     {
         [SerializeField]
-        public LaunchType m_launchType;
+        protected LaunchType m_launchType;
         public string MysqlConnection
         {
             get

@@ -4,18 +4,16 @@ using UnityEngine;
 
 namespace GameCommon
 {
-    [MessagePackObject]
     public abstract class ConfigBaseElement
     {
-        [Key(1)]
-        public int Id { get; set; }
+        public int Id;
     }
 
     [System.Serializable]
     public abstract class ConfigBase<T1> : ScriptableObject, ISerializationCallbackReceiver where T1 : ConfigBaseElement
     {
         [SerializeField]
-        public List<T1> m_datas = new List<T1>();
+        protected List<T1> m_datas = new List<T1>();
         [System.NonSerialized]
         private Dictionary<int, T1> m_elements = new Dictionary<int, T1>();
         public void OnAfterDeserialize()

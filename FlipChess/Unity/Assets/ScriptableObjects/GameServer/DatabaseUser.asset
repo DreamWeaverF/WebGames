@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: DatabaseUser
   m_EditorClassIdentifier: 
   m_connectPool: {fileID: 11400000, guid: da2ae7b911918904db07e77a867e4c28, type: 2}
+  m_tableName: DatabaseUser

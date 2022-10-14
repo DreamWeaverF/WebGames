@@ -11,7 +11,7 @@ namespace GameServer
         public UserData UserData;
     }
     [AutoGenSOClass]
-    public class DatabaseUser : DatabaseBase<DatabaseBaseElement,long>
+    public class DatabaseUser : DatabaseBase<DatabaseUserElement, long>
     {
         
     }

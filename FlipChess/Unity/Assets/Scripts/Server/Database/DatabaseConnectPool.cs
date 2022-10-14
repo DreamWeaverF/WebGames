@@ -64,5 +64,22 @@ namespace GameServer
                 return mySqlConnectionList.Count > 0;
             }
         }
+
+        public void OnBeforeSerialize()
+        {
+            mySqlConnectionList = new Queue<MySqlConnection>();
+            for (int i = 0; i < maxConnectCount; i++)
+            {
+                try
+                {
+                    MySqlConnection connection = new MySqlConnection(m_configServerLaunch.MysqlConnection);
+                    mySqlConnectionList.Enqueue(connection);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(e.ToString());
+                }
+            }
+        }
     }
 }

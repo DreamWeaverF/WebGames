@@ -12,4 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efefefd97c4d5534286967a86cc0a54c, type: 3}
   m_Name: ConfigServerLaunch
   m_EditorClassIdentifier: 
+  m_datas:
+  - Id: 1
+    ListenerPort: 50001
+    MySqlHost: 192.168.182.129
+    MySqlPort: 3306
+    MySqlUserId: root
+    MySqlPassword: 900824
+    MySqlSchemaName: FlipChess
+    MySqlCharacter: utf8
+  - Id: 2
+    ListenerPort: 50001
+    MySqlHost: 192.168.182.129
+    MySqlPort: 3306
+    MySqlUserId: root
+    MySqlPassword: 900824
+    MySqlSchemaName: FlipChess
+    MySqlCharacter: utf8
+  - Id: 3
+    ListenerPort: 50001
+    MySqlHost: localhost
+    MySqlPort: 3306
+    MySqlUserId: root
+    MySqlPassword: 120120@fiture
+    MySqlSchemaName: FlipChess
+    MySqlCharacter: utf8
+  - Id: 4
+    ListenerPort: 50001
+    MySqlHost: rm-2ze3w3nv1y9yw8d1q.mysql.rds.aliyuncs.com
+    MySqlPort: 3306
+    MySqlUserId: gameskywalking_w
+    MySqlPassword: ojbUpmo933rpTtOp
+    MySqlSchemaName: FlipChess
+    MySqlCharacter: utf8
+  - Id: 5
+    ListenerPort: 50001
+    MySqlHost: rm-2ze3w3nv1y9yw8d1q.mysql.rds.aliyuncs.com
+    MySqlPort: 3306
+    MySqlUserId: gameskywalking_w
+    MySqlPassword: ojbUpmo933rpTtOp
+    MySqlSchemaName: FlipChess
+    MySqlCharacter: utf8
   m_launchType: 1
