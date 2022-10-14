@@ -11,12 +11,12 @@ using UnityEngine;
 
 namespace GameServer
 {
-    public abstract class DatabaseBaseElement
+    public abstract class ADatabaseElement
     {
 
     }
 
-    public class DatabaseBase<TElement,TKey> : ScriptableObject where TElement : DatabaseBaseElement
+    public abstract class ADatabase<TElement,TKey> : ScriptableObject where TElement : ADatabaseElement
     {
         [SerializeField]
         private DatabaseConnectPool m_connectPool;
@@ -33,21 +33,8 @@ namespace GameServer
 
             Type type = this.GetType();
             m_getFieldValueAsyncMethod = type.GetMethod(nameof(GetFieldValueAsync), BindingFlags.NonPublic | BindingFlags.Instance);
-
         }
-        public void OnBeforeSerialize()
-        {
-
-        }
-        private async Task<MySqlConnection> TryGetMySqlConnection()
-        {
-            while (!m_connectPool.CheckConnect())
-            {
-                await Task.Delay(1000);
-            }
-            return m_connectPool.Fetch();
-        }
-        protected async Task<long> TrySelectTableCount()
+        public async Task<long> TrySelectTableCount()
         {
             try
             {
@@ -73,7 +60,7 @@ namespace GameServer
         }
         public async Task<long> TrySelectCount(TKey keyValue)
         {
-            //try
+            try
             {
                 MySqlConnection connection = await TryGetMySqlConnection();
                 MySqlCommand cmd = connection.CreateCommand();
@@ -89,10 +76,10 @@ namespace GameServer
                     }
                 }
             }
-            //catch (Exception e)
-            //{
-            //    Debug.LogError(e.ToString());
-            //}
+            catch (Exception e)
+            {
+                Debug.LogError(e.ToString());
+            }
             return 0;
         }
         public async Task<bool> TrySelect(TElement element, TKey keyValue)
@@ -226,6 +213,14 @@ namespace GameServer
         protected async Task<T> GetFieldValueAsync<T>(DbDataReader dbReader, int index)
         {
             return await dbReader.GetFieldValueAsync<T>(index);
+        }
+        private async Task<MySqlConnection> TryGetMySqlConnection()
+        {
+            while (!m_connectPool.CheckConnect())
+            {
+                await Task.Delay(1000);
+            }
+            return m_connectPool.Fetch();
         }
 
     }

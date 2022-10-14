@@ -8,13 +8,13 @@ using UnityEngine;
 
 namespace GameCommon
 {
-    public static class StringHelper
+    public static class StringExtensions
     {
         private static string m_ignoreString = "xx";
         private static MethodInfo m_covertMethod;
-        static StringHelper()
+        static StringExtensions()
         {
-            Type type = typeof(StringHelper);
+            Type type = typeof(StringExtensions);
             m_covertMethod = type.GetMethod(nameof(ConvertT), BindingFlags.NonPublic | BindingFlags.Static);
 
         }

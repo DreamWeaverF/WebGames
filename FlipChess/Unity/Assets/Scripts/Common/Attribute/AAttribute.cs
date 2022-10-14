@@ -2,7 +2,7 @@ using System;
 
 namespace GameCommon
 {
-    public class BaseAttribute : Attribute
+    public abstract class AAttribute : Attribute
     {
         
     }

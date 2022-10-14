@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace GameCommon
 {
-    public abstract class ConfigBaseElement
+    public abstract class AConfigElement
     {
         public int Id;
     }
 
     [System.Serializable]
-    public abstract class ConfigBase<T1> : ScriptableObject, ISerializationCallbackReceiver where T1 : ConfigBaseElement
+    public abstract class AConfig<T1> : ScriptableObject, ISerializationCallbackReceiver where T1 : AConfigElement
     {
         [SerializeField]
         protected List<T1> m_datas = new List<T1>();

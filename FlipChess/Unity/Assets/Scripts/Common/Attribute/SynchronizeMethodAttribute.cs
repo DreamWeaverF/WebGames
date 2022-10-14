@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GameCommon
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class SynchronizeMethodAttribute : BaseAttribute
+    public class SynchronizeMethodAttribute : AAttribute
     {
         public SyncName SyncName;
     }

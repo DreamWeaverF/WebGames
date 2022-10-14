@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameServer
 {
-    public class DatabaseAccountElement : DatabaseBaseElement
+    public class DatabaseAccountElement : ADatabaseElement
     {
         public string UserName;
         public string Password;
@@ -13,7 +13,7 @@ namespace GameServer
         public long LastLoginTime;
     }
     [AutoGenSOClass]
-    public class DatabaseAccount : DatabaseBase<DatabaseAccountElement,string>
+    public class DatabaseAccount : ADatabase<DatabaseAccountElement,string>
     {
         
     }

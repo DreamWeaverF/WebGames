@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GameCommon
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class AutoGenSOClassAttribute : BaseAttribute
+    public class AutoGenSOClassAttribute : AAttribute
     {
 
     }

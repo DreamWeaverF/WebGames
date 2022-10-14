@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GameServer
 {
     [Serializable]
-    public class ConfigServerLaunchElement : ConfigBaseElement
+    public class ConfigServerLaunchElement : AConfigElement
     {
         public int ListenerPort;
         public string MySqlHost;
@@ -17,7 +17,7 @@ namespace GameServer
         public string MySqlCharacter;
     }
     [GenConfigClass]
-    public class ConfigServerLaunch : ConfigBase<ConfigServerLaunchElement>
+    public class ConfigServerLaunch : AConfig<ConfigServerLaunchElement>
     {
         [SerializeField]
         protected LaunchType m_launchType;

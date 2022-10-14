@@ -56,7 +56,7 @@ namespace GameCommon
             for (int i = 0; i < methods.Length; i++)
             {
                 method = methods[i];
-                var atts = method.GetCustomAttributes<BaseAttribute>();
+                var atts = method.GetCustomAttributes<AAttribute>();
                 if (atts == null)
                 {
                     continue;
@@ -212,7 +212,7 @@ namespace GameCommon
             for (int i = 0; i < methods.Length; i++)
             {
                 method = methods[i];
-                var atts = method.GetCustomAttributes<BaseAttribute>();
+                var atts = method.GetCustomAttributes<AAttribute>();
                 if (atts == null)
                 {
                     continue;

@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace GameServer
 {
-    public class DatabaseRankElement : DatabaseBaseElement
+    public class DatabaseRankElement : ADatabaseElement
     {
         public int RankId;
         public RankListData RankData;
     }
     [AutoGenSOClass]
-    public class DatabaseRank : DatabaseBase<DatabaseRankElement,int>
+    public class DatabaseRank : ADatabase<DatabaseRankElement,int>
     {
 
     }

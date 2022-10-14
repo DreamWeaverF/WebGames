@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameServer
 {
-    public static class DatabaseCommandHelper
+    public static class DatabaseCommandExtensions
     {
         private static MySqlDbType CoverTypeToDbType<T1>(T1 value1)
         {

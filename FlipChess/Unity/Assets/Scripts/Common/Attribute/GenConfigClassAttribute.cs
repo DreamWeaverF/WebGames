@@ -1,6 +1,6 @@
 namespace GameCommon
 {
-    public class GenConfigClassAttribute : BaseAttribute
+    public class GenConfigClassAttribute : AAttribute
     {
         
     }
