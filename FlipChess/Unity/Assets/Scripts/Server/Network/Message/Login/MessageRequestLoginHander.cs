@@ -1,22 +1,39 @@
 using GameCommon;
+using System;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GameServer
 {
     [AutoGenSOClass]
     public class MessageRequestLoginHander : AMessageRequestHander<MessageRequestLogin,MessageResponseLogin>
     {
-        public override async Task<AMessageResponse> OnMessage(long userId, AMessageRequest request)
+        [SerializeField]
+        private DatabaseAccount m_databaseAccount;
+        [SerializeField]
+        private DatabaseUser m_databaseUser;
+
+        protected override async Task OnMessage(long userId, MessageRequestLogin request)
         {
-            await Task.CompletedTask;
-            m_response.RpcId = request.RpcId;
-            if (userId != 0)
+            long count = await m_databaseAccount.TrySelectCount(request.UserName);
+            DatabaseAccountElement element = new DatabaseAccountElement();
+            if(count == 0)
             {
-                m_response.ErrorCode = MessageErrorCode.MessageError;
-                return m_response;
+                element.UserName = request.UserName;
+                element.Password = request.Password;
+                element.UserId = 100;
+                await m_databaseAccount.TryInsertInto(element);
             }
-            m_response.UserId = 10001;
-            return m_response;
+            else
+            {
+                await m_databaseAccount.TrySelect(element, request.UserName);
+                if(element.Password != request.Password)
+                {
+                    m_response.ErrorCode = MessageErrorCode.PasswordError;
+                    return;
+                }
+            }
+            m_response.UserId = element.UserId;
         }
     }
 }

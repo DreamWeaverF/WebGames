@@ -423,6 +423,19 @@ namespace GameCommon
             }
             (syncAction as SyncAction<T1, T2>).Invoke(value1, value2);
         }
+        public void BroadcastSyncEvent<T1, T2, T3>(SyncName syncName, T1 value1, T2 value2, T3 value3)
+        {
+            if (!m_syncActionDict.TryGetValue(syncName, out ISyncAction syncAction))
+            {
+                return;
+            }
+            if (!(syncAction is SyncAction<T1, T2, T3>))
+            {
+                Debug.LogError($"π„≤•¿‡–Õ¥ÌŒÛ: {syncName}");
+                return;
+            }
+            (syncAction as SyncAction<T1, T2, T3>).Invoke(value1, value2, value3);
+        }
 
         public T1 BroadcastSyncEvent<T1>(SyncName syncName)
         {
@@ -493,6 +506,10 @@ namespace GameCommon
         public static void BroadcastSyncEvent<T1, T2>(this SyncName syncName, T1 value1, T2 value2)
         {
             m_repository.BroadcastSyncEvent(syncName, value1, value2);
+        }
+        public static void BroadcastSyncEvent<T1, T2, T3>(this SyncName syncName, T1 value1, T2 value2, T3 value3)
+        {
+            m_repository.BroadcastSyncEvent(syncName, value1, value2, value3);
         }
         public static T1 BroadcastSyncEvent<T1>(this SyncName syncName)
         {

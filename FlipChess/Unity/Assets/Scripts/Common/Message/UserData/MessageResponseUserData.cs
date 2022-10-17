@@ -1,7 +1,4 @@
 using MessagePack;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace GameCommon
 {
@@ -9,7 +6,5 @@ namespace GameCommon
     {
         [Key(1)]
         public UserData UserData { get; set; }
-        [Key(2)]
-        public int FightID { get; set; }
     }
 }

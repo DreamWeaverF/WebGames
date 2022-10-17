@@ -1,0 +1,7 @@
+备注,Id,ServerAddress
+,平台ID,地址
+LOCAl,1,ws://127.0.0.1:50001/connect
+DEV,2,ws://127.0.0.1:50001/connect
+QA,3,ws://127.0.0.1:50001/connect
+PROD,4,ws://127.0.0.1:50001/connect
+PROD_B,5,ws://127.0.0.1:50001/connect

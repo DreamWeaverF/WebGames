@@ -33,6 +33,7 @@ namespace GameEditor
                     {
                         continue;
                     }
+                    //
                     FileInfo[] fileInfos = dirInfo.GetFiles($"{types[i1].Name}.csv");
                     if(fileInfos.Length <= 0)
                     {

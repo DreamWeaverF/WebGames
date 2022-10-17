@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Client\Config\ConfigClientLaunch.cs" />
     <Compile Include="Assets\Scripts\Client\Network\Message\Login\MessageRequestLoginSender.cs" />
     <Compile Include="Assets\Scripts\Client\Network\NetworkController.cs" />
     <Compile Include="Assets\Scripts\Client\Network\Message\AMessageNoticeHander.cs" />
@@ -319,6 +320,9 @@
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Assets\Plugins\System.Runtime.CompilerServices.Unsafe.dll</HintPath>

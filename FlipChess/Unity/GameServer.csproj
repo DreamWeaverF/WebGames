@@ -60,17 +60,24 @@
     <Compile Include="Assets\Scripts\Server\Database\Rank\DatabaseRank.cs" />
     <Compile Include="Assets\Scripts\Server\Network\NetworkController.cs" />
     <Compile Include="Assets\Scripts\Server\Network\UserNetBehavior.cs" />
-    <Compile Include="Assets\Scripts\Server\Database\DatabaseController.cs" />
     <Compile Include="Assets\Scripts\Server\Database\ADatabase.cs" />
+    <Compile Include="Assets\Scripts\Server\User\UserRespository.cs" />
     <Compile Include="Assets\Scripts\Server\Network\Message\Login\MessageRequestLoginHander.cs" />
     <Compile Include="Assets\Scripts\Server\Network\Message\AMessageRequestHander.cs" />
-    <Compile Include="Assets\Scripts\Server\Database\DatabaseConnectPool.cs" />
+    <Compile Include="Assets\Scripts\Server\Database\DatabaseConnect.cs" />
     <Compile Include="Assets\Scripts\Server\Database\DatabaseCommandExtensions.cs" />
     <Compile Include="Assets\Scripts\Server\Config\ConfigServerLaunch.cs" />
+    <Compile Include="Assets\Scripts\Server\Network\Message\ActionChessMan\MessageRequestActionChessManHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Network\Message\UserData\MessageRequestUserDataHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Test.cs" />
+    <Compile Include="Assets\Scripts\Server\Fight\MatchFightController.cs" />
+    <Compile Include="Assets\Scripts\Server\Fight\FightRespository.cs" />
+    <Compile Include="Assets\Scripts\Server\Network\Message\MatchFight\MessageRequestMatchFightHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Fight\FightController.cs" />
+    <Compile Include="Assets\Scripts\Server\Network\Message\MatchFight\MessageNoticeMatchFightSender.cs" />
     <Compile Include="Assets\Scripts\Server\Database\User\DatabaseUser.cs" />
     <Compile Include="Assets\Scripts\Server\Database\Account\DatabaseAccount.cs" />
-    <Compile Include="Assets\Scripts\Server\User\UserRespository.cs" />
-    <Compile Include="Assets\Scripts\Server\Fight\FightRespository.cs" />
+    <Compile Include="Assets\Scripts\Server\Network\Message\CancelMatchFight\MessageRequestCancelMatchFightHander.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Server\GameServer.asmdef" />
@@ -330,6 +337,9 @@
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Assets\Plugins\System.Runtime.CompilerServices.Unsafe.dll</HintPath>

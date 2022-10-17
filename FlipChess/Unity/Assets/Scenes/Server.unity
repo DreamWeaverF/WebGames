@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 147177360}
   - component: {fileID: 147177361}
-  - component: {fileID: 147177362}
   m_Layer: 0
   m_Name: Server
   m_TagString: Untagged
@@ -170,18 +169,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_configServerLaunch: {fileID: 11400000, guid: e96d6b93f5a9580449b44c4649a5060f, type: 2}
   m_loginHander: {fileID: 11400000, guid: 7811d269e0d1c684ca84b849a46078bc, type: 2}
---- !u!114 &147177362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147177358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96719acd9cdce41418296f85c386fac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_connectPool: {fileID: 11400000, guid: da2ae7b911918904db07e77a867e4c28, type: 2}
-  m_databaseUser: {fileID: 11400000, guid: 1f84c6cee55bdcf4dabf84b34d551261, type: 2}
-  m_databaseAccount: {fileID: 11400000, guid: 4c22884ad23afce4b8190cefcc762150, type: 2}

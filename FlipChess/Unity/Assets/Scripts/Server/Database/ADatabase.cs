@@ -19,13 +19,13 @@ namespace GameServer
     public abstract class ADatabase<TElement,TKey> : ScriptableObject where TElement : ADatabaseElement
     {
         [SerializeField]
-        private DatabaseConnectPool m_connectPool;
+        private DatabaseConnect m_connectPool;
 
         private string m_tableName;
         private FieldInfo[] m_fields;
         private MethodInfo m_getFieldValueAsyncMethod;
 
-        public void Start()
+        void OnEnable()
         {
             m_tableName = GetType().Name;
             Type typeElement = typeof(TElement);
@@ -33,6 +33,11 @@ namespace GameServer
 
             Type type = this.GetType();
             m_getFieldValueAsyncMethod = type.GetMethod(nameof(GetFieldValueAsync), BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+        void OnDisable()
+        {
+            m_fields = null;
+            m_getFieldValueAsyncMethod = null;
         }
         public async Task<long> TrySelectTableCount()
         {

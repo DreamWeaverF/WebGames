@@ -5,26 +5,54 @@ using MessagePack;
 using WebSocketSharp.Server;
 using UnityEngine;
 using System.Collections.Generic;
+using ET;
 
 namespace GameServer
 {
-    public class NetworkController : MonoBehaviourEx
+    public class NetworkController : AMonoBehaviour
     {
         [SerializeField]
         private ConfigServerLaunch m_configServerLaunch;
+        [SerializeField]
+        private MessageRequestLoginHander m_loginHander;
 
         private Dictionary<long, UserNetBehavior> m_userNets = new Dictionary<long, UserNetBehavior>();
         private Dictionary<Type, AMessageRequestHander> m_requestHanders = new Dictionary<Type, AMessageRequestHander>();
         private MessageNoticeError m_noticeError = new MessageNoticeError();
 
-        [SerializeField]
-        private MessageRequestLoginHander m_loginHander;
-
-        void Start()
+        private WebSocketServer m_webScoketServer;
+        protected override void OnInit()
         {
-            WebSocketServer wss = new WebSocketServer(m_configServerLaunch.ListenerPort);
-            wss.AddWebSocketService<UserNetBehavior>("/connect", OnConnectService);
-            wss.Start();
+            m_webScoketServer = new WebSocketServer(m_configServerLaunch.ListenerPort);
+            m_webScoketServer.AddWebSocketService<UserNetBehavior>("/connect", OnConnectService);
+            m_webScoketServer.Start();
+        }
+        protected override void UnInit()
+        {
+            if(m_webScoketServer != null)
+            {
+                m_webScoketServer.RemoveWebSocketService("/connect");
+                m_webScoketServer.Stop();
+                m_webScoketServer = null;
+            }
+        }
+        [SynchronizeMethod(SyncName = SyncName.MessageNoticeSender)]
+        private void OnMessageNoticeSender(List<long> userIds, AMessageNotice notice)
+        {
+            if(userIds.Count <= 0)
+            {
+                Debug.Log($"广播消息没有推送接收玩家 {notice.GetType().Name}");
+                return;
+            }
+            byte[] bytes = MessagePackSerializer.Serialize<IMessage>(notice, MessagePackSerializerOptions.Standard);
+            for(int i = 0; i < userIds.Count; i++)
+            {
+                if(!m_userNets.TryGetValue(userIds[i], out UserNetBehavior userNetBehavior))
+                {
+                    continue;
+                }
+                userNetBehavior.SendMessage(bytes);
+            }
         }
         private void OnConnectService(UserNetBehavior webSocketBehavior)
         {
@@ -56,9 +84,9 @@ namespace GameServer
             {
                 if(userId != 0)
                 {
-                    //
+                    m_userNets.Remove(userId);
+                    userId = 0;
                 }
-                userId = 0;
                 MessageResponseLogin responseLogin = await m_loginHander.OnMessage(userId, request) as MessageResponseLogin;
                 if(responseLogin.ErrorCode == MessageErrorCode.Success)
                 {

@@ -25,7 +25,7 @@ namespace GameServer
                 m_response.ErrorCode = MessageErrorCode.UserNotLogged;
                 return m_response;
             }
-            //todolist 查询用户是否存在
+            m_response.RpcId = request.RpcId;
             await OnMessage(userId,request as T1);
             return m_response;
         }

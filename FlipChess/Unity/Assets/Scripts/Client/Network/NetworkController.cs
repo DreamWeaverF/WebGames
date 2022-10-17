@@ -7,27 +7,31 @@ using GameCommon;
 
 namespace GameClient
 {
-    public class NetworkController : MonoBehaviourEx
+    public class NetworkController : AMonoBehaviour
     {
-        //[SerializeField]
-        private string m_address = "ws://127.0.0.1:50001/connect";
+        [SerializeField]
+        private ConfigClientLaunch m_configClientLanch;
 
         [SerializeField]
         private MessageRequestLoginSender m_loginSenderSO;
 
         private IWebSocket m_socket;
         private readonly Dictionary<int, ETTask<AMessageResponse>> m_requestCallbacks = new Dictionary<int, ETTask<AMessageResponse>>();
-        void Start()
+        protected override void OnInit()
         {
-            m_socket = new WebSocket(m_address);
+            m_socket = new WebSocket(m_configClientLanch.ServerAddress);
             m_socket.OnOpen += OnSocketOpen;
             m_socket.OnMessage += OnSocketMessage;
             m_socket.OnClose += OnSocketClose;
             m_socket.OnError += OnSocketError;
             m_socket.ConnectAsync();
         }
+        protected override void UnInit()
+        {
+
+        }
         [SynchronizeMethod(SyncName = SyncName.MessageRequestSender)]
-        private ETTask<AMessageResponse> OnSendMessage(AMessageRequest request)
+        private ETTask<AMessageResponse> OnMessageRequestSender(AMessageRequest request)
         {
             byte[] bytes = MessagePackSerializer.Serialize<IMessage>(request, MessagePackSerializerOptions.Standard);
             m_socket.SendAsync(bytes);
@@ -70,13 +74,7 @@ namespace GameClient
 
         public async void TestCode()
         {
-            MessageRequestLogin request = new MessageRequestLogin()
-            {
-                UserName = "1234",
-                Password = "4321",
-            };
-
-            MessageResponseLogin response = await m_loginSenderSO.SendMessage(request);
+            MessageResponseLogin response = await m_loginSenderSO.SendMessage("1234","4321");
             Debug.Log(response.UserId);
         }
     }

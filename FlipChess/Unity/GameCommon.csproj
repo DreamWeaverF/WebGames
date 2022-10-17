@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Common\Message\RankData\MessageResponseRankData.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncAction.cs" />
-    <Compile Include="Assets\Scripts\Common\Message\MatchSuccess\MessageNoticeMatchSuccess.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\FightResult\MessageNoticeFightResult.cs" />
     <Compile Include="Assets\Scripts\Common\Message\JoinFight\MessageResponseJoinFight.cs" />
     <Compile Include="Assets\Scripts\Common\Message\MatchFight\MessageRequestMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Attribute\SynchronizeMethodAttribute.cs" />
@@ -67,38 +67,48 @@
     <Compile Include="Assets\Scripts\Common\Message\AMessageRequest.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncFunc.cs" />
     <Compile Include="Assets\Scripts\Common\Message\MatchFight\MessageResponseMatchFight.cs" />
-    <Compile Include="Assets\Scripts\Common\Extensions\MonoBehaviourEx.cs" />
+    <Compile Include="Assets\Scripts\Common\Component\AMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Common\Message\Login\MessageRequestLogin.cs" />
-    <Compile Include="Assets\Scripts\Common\Message\PlayChess\MessageResponsePlayChess.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageRequestFlipChessMan.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\ActionChessMan\MessageResponseActionChessMan.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageResponseFlipChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncHelper.cs" />
     <Compile Include="Assets\Scripts\Common\Timer\TimerHelper.cs" />
     <Compile Include="Assets\Scripts\Common\Message\UserData\MessageResponseUserData.cs" />
     <Compile Include="Assets\Scripts\Common\Config\AConfig.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageNoticeFilpChessMan.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\Chat\MessageRequestChat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CancelMatchFight\MessageResponseCancelMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Attribute\AAttribute.cs" />
-    <Compile Include="Assets\Scripts\Common\Data\RankData.cs" />
+    <Compile Include="Assets\Scripts\Common\Data\Rank\RankData.cs" />
     <Compile Include="Assets\Scripts\Common\Extensions\StringExtensions.cs" />
     <Compile Include="Assets\Scripts\Common\Extensions\GameObjectExtensions.cs" />
-    <Compile Include="Assets\Scripts\Common\Data\UserData.cs" />
+    <Compile Include="Assets\Scripts\Common\Data\User\UserData.cs" />
     <Compile Include="Assets\Scripts\Common\Message\IMessage.cs" />
     <Compile Include="Assets\Scripts\Common\Message\MessageErrorCode.cs" />
-    <Compile Include="Assets\Scripts\Common\Message\PlayChess\MessageRequestPlayChess.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\ActionChessMan\MessageRequestActionChessMan.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\MatchFight\MessageNoticeMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Message\UserData\MessageRequestUserData.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\ActionChessMan\MessageNoticeActionChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncName.cs" />
+    <Compile Include="Assets\Scripts\Common\Data\Fight\EnumFight.cs" />
     <Compile Include="Assets\Scripts\Common\Attribute\AutoGenSOClassAttribute.cs" />
+    <Compile Include="Assets\Scripts\Common\Data\Fight\FightDataExtensions.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AMessageNotice.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AdmitDefeat\MessageRequestAdmitDefeat.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\Chat\MessageResponseChat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CancelMatchFight\MessageRequestCancelMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Message\RankData\MessageRequestRankData.cs" />
     <Compile Include="Assets\Scripts\Common\Message\JoinFight\MessageRequestJoinFight.cs" />
     <Compile Include="Assets\Scripts\Common\Component\Vector2I.cs" />
+    <Compile Include="Assets\Scripts\Common\Data\User\EnumUser.cs" />
     <Compile Include="Assets\Scripts\Common\Launch\LaunchType.cs" />
     <Compile Include="Assets\Scripts\Common\Message\MessageRequestSenderHelper.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AdmitDefeat\MessageResponseAdmitDefeat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\Login\MessageResponseLogin.cs" />
-    <Compile Include="Assets\Scripts\Common\Data\FightData.cs" />
+    <Compile Include="Assets\Scripts\Common\Data\Fight\FightData.cs" />
     <Compile Include="Assets\Scripts\Common\Component\Vector3I.cs" />
-    <Compile Include="Assets\Scripts\Common\Config\Chess\ConfigChessMan.cs" />
+    <Compile Include="Assets\Scripts\Common\Config\ChessMan\ConfigChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CommonError\MessageNoticeError.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -359,6 +369,9 @@
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Assets\Plugins\System.Runtime.CompilerServices.Unsafe.dll</HintPath>

@@ -4,8 +4,12 @@ namespace GameCommon
     public enum SyncName
     {
         None,
-
-        MessageRequestSender,
+        //Server
+        MatchFight = 1000,
+        CancelMatchFight,
+        MatchFightSuccess,
         MessageNoticeSender,
+        //Client
+        MessageRequestSender = 2000,
     }
 }

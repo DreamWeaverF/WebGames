@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32054bf75de404c4483ad859aaca32b3, type: 3}
+  m_Name: ConfigClientLaunch
+  m_EditorClassIdentifier: 
+  m_datas:
+  - Id: 1
+    ServerAddress: ws://127.0.0.1:50001/connect
+  - Id: 2
+    ServerAddress: ws://127.0.0.1:50001/connect
+  - Id: 3
+    ServerAddress: ws://127.0.0.1:50001/connect
+  - Id: 4
+    ServerAddress: ws://127.0.0.1:50001/connect
+  - Id: 5
+    ServerAddress: ws://127.0.0.1:50001/connect
+  m_launchType: 1
