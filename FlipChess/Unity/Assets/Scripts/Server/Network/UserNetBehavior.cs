@@ -50,9 +50,9 @@ namespace GameServer
             }
             OnActionMessage(m_userId, e, this);
         }
-        public void SendMessage(byte[] bytes, bool bClose = false)
+        public void SendMessage(byte[] bytes, bool bCloseSocket = false)
         {
-            if (!bClose)
+            if (!bCloseSocket)
             {
                 SendAsync(bytes, null);
                 return;

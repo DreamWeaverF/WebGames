@@ -12,7 +12,7 @@ namespace GameServer
         public long UserId;
         public long LastLoginTime;
     }
-    [AutoGenSOClass]
+    [GenerateAutoClass]
     public class DatabaseAccount : ADatabase<DatabaseAccountElement,string>
     {
         

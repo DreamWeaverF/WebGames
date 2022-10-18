@@ -10,7 +10,7 @@ namespace GameServer
         public int RankId;
         public RankData RankData;
     }
-    [AutoGenSOClass]
+    [GenerateAutoClass]
     public class DatabaseRank : ADatabase<DatabaseRankElement,int>
     {
 

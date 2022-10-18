@@ -56,28 +56,38 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Server\Network\Message\AMessageNoticeSender.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\FightResult\MessageNoticeFightResultSender.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\AMessageNoticeSender.cs" />
     <Compile Include="Assets\Scripts\Server\Database\Rank\DatabaseRank.cs" />
     <Compile Include="Assets\Scripts\Server\Network\NetworkController.cs" />
     <Compile Include="Assets\Scripts\Server\Network\UserNetBehavior.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\ActionChessMan\MessageNoticeActionChessManSender.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\FightChat\MessageRequestFightChatHander.cs" />
     <Compile Include="Assets\Scripts\Server\Database\ADatabase.cs" />
     <Compile Include="Assets\Scripts\Server\User\UserRespository.cs" />
-    <Compile Include="Assets\Scripts\Server\Network\Message\Login\MessageRequestLoginHander.cs" />
-    <Compile Include="Assets\Scripts\Server\Network\Message\AMessageRequestHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\Login\MessageRequestLoginHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\AMessageRequestHander.cs" />
     <Compile Include="Assets\Scripts\Server\Database\DatabaseConnect.cs" />
     <Compile Include="Assets\Scripts\Server\Database\DatabaseCommandExtensions.cs" />
     <Compile Include="Assets\Scripts\Server\Config\ConfigServerLaunch.cs" />
-    <Compile Include="Assets\Scripts\Server\Network\Message\ActionChessMan\MessageRequestActionChessManHander.cs" />
-    <Compile Include="Assets\Scripts\Server\Network\Message\UserData\MessageRequestUserDataHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\ActionChessMan\MessageRequestActionChessManHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\RankData\MessageRequestRankDataHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\UserData\MessageRequestUserDataHander.cs" />
     <Compile Include="Assets\Scripts\Server\Test.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\AdmitDefeat\MessageRequestAdmitDefeatHander.cs" />
     <Compile Include="Assets\Scripts\Server\Fight\MatchFightController.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\Error\MessageNoticeErrorSender.cs" />
     <Compile Include="Assets\Scripts\Server\Fight\FightRespository.cs" />
-    <Compile Include="Assets\Scripts\Server\Network\Message\MatchFight\MessageRequestMatchFightHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\MatchFight\MessageRequestMatchFightHander.cs" />
     <Compile Include="Assets\Scripts\Server\Fight\FightController.cs" />
-    <Compile Include="Assets\Scripts\Server\Network\Message\MatchFight\MessageNoticeMatchFightSender.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\MatchFight\MessageNoticeMatchFightSender.cs" />
     <Compile Include="Assets\Scripts\Server\Database\User\DatabaseUser.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\JoinFight\MessageRequestJoinFightHander.cs" />
     <Compile Include="Assets\Scripts\Server\Database\Account\DatabaseAccount.cs" />
-    <Compile Include="Assets\Scripts\Server\Network\Message\CancelMatchFight\MessageRequestCancelMatchFightHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\FlipChessMan\MessageRequestFlipChessManHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\CancelMatchFight\MessageRequestCancelMatchFightHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\FlipChessMan\MessageNoticeFlipChessManSender.cs" />
+    <Compile Include="Assets\Scripts\Server\Rank\RankRespository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Server\GameServer.asmdef" />

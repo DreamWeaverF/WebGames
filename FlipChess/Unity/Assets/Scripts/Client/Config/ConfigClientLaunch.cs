@@ -11,7 +11,6 @@ namespace GameClient
     {
         public string ServerAddress;
     }
-    [GenConfigClass]
     public class ConfigClientLaunch : AConfig<ConfigClientLaunchElement>
     {
         [SerializeField]

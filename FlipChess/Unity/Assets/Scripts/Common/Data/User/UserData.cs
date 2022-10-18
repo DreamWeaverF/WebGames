@@ -24,9 +24,5 @@ namespace GameCommon
         public int FightID { get; set; }
         [IgnoreMember]
         public long LastMessageTime { get; set; }
-        [IgnoreMember]
-        public string SocketId { get; set; }
-
-
     }
 }

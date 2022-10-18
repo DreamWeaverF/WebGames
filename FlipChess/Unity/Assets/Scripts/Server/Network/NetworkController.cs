@@ -5,7 +5,6 @@ using MessagePack;
 using WebSocketSharp.Server;
 using UnityEngine;
 using System.Collections.Generic;
-using ET;
 
 namespace GameServer
 {
@@ -18,6 +17,7 @@ namespace GameServer
 
         private Dictionary<long, UserNetBehavior> m_userNets = new Dictionary<long, UserNetBehavior>();
         private Dictionary<Type, AMessageRequestHander> m_requestHanders = new Dictionary<Type, AMessageRequestHander>();
+
         private MessageNoticeError m_noticeError = new MessageNoticeError();
 
         private WebSocketServer m_webScoketServer;
@@ -37,7 +37,7 @@ namespace GameServer
             }
         }
         [SynchronizeMethod(SyncName = SyncName.MessageNoticeSender)]
-        private void OnMessageNoticeSender(List<long> userIds, AMessageNotice notice)
+        private void OnMessageNoticeSender(List<long> userIds, bool bCloseSocket, AMessageNotice notice)
         {
             if(userIds.Count <= 0)
             {
@@ -51,7 +51,7 @@ namespace GameServer
                 {
                     continue;
                 }
-                userNetBehavior.SendMessage(bytes);
+                userNetBehavior.SendMessage(bytes,bCloseSocket);
             }
         }
         private void OnConnectService(UserNetBehavior webSocketBehavior)
@@ -88,11 +88,19 @@ namespace GameServer
                     userId = 0;
                 }
                 MessageResponseLogin responseLogin = await m_loginHander.OnMessage(userId, request) as MessageResponseLogin;
-                if(responseLogin.ErrorCode == MessageErrorCode.Success)
+                if (responseLogin.ErrorCode == MessageErrorCode.Success)
                 {
                     net.UserId = responseLogin.UserId;
+                    if (m_userNets.TryGetValue(responseLogin.UserId,out UserNetBehavior rpNet))
+                    {
+                        m_noticeError.ErrorCode = MessageErrorCode.OtherLogin;
+                        bytes = MessagePackSerializer.Serialize<IMessage>(m_noticeError);
+                        rpNet.SendMessage(bytes, true);
+                        m_userNets.Remove(responseLogin.UserId);
+                    }
                     m_userNets.Add(responseLogin.UserId, net);
                 }
+
                 bytes = MessagePackSerializer.Serialize<IMessage>(responseLogin);
                 net.SendMessage(bytes, true);
                 return;

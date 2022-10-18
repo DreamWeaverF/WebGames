@@ -13,7 +13,7 @@ namespace GameCommon
         [Key(3)]
         public string UserHeadIcon { get; set; }
         [Key(4)]
-        public string UserScore { get; set; }
+        public int UserScore { get; set; }
     }
 
     [MessagePackObject]

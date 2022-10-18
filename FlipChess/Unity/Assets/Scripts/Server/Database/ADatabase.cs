@@ -27,17 +27,23 @@ namespace GameServer
 
         void OnEnable()
         {
-            m_tableName = GetType().Name;
-            Type typeElement = typeof(TElement);
-            m_fields = typeElement.GetFields();
+            if (Application.isPlaying)
+            {
+                m_tableName = GetType().Name;
+                Type typeElement = typeof(TElement);
+                m_fields = typeElement.GetFields();
 
-            Type type = this.GetType();
-            m_getFieldValueAsyncMethod = type.GetMethod(nameof(GetFieldValueAsync), BindingFlags.NonPublic | BindingFlags.Instance);
+                Type type = this.GetType();
+                m_getFieldValueAsyncMethod = type.GetMethod(nameof(GetFieldValueAsync), BindingFlags.NonPublic | BindingFlags.Instance);
+            }
         }
         void OnDisable()
         {
-            m_fields = null;
-            m_getFieldValueAsyncMethod = null;
+            if (Application.isPlaying)
+            {
+                m_fields = null;
+                m_getFieldValueAsyncMethod = null;
+            }
         }
         public async Task<long> TrySelectTableCount()
         {

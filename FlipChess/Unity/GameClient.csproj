@@ -56,11 +56,27 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Client\Message\JoinFight\MessageRequestJoinFightSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\FightChat\MessageRequestFightChatSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\FlipChessMan\MessageRequestFlipChessManSender.cs" />
+    <Compile Include="Assets\Scripts\Client\TestCode.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\Error\MessageNoticeErrorHander.cs" />
     <Compile Include="Assets\Scripts\Client\Config\ConfigClientLaunch.cs" />
-    <Compile Include="Assets\Scripts\Client\Network\Message\Login\MessageRequestLoginSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\MatchFight\MessageRequestMatchFightSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\Login\MessageRequestLoginSender.cs" />
     <Compile Include="Assets\Scripts\Client\Network\NetworkController.cs" />
-    <Compile Include="Assets\Scripts\Client\Network\Message\AMessageNoticeHander.cs" />
-    <Compile Include="Assets\Scripts\Client\Network\Message\AMessageRequestSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\AMessageNoticeHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\FightResult\MessageNoticeFightResultHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\MatchFight\MessageNoticeMatchFightHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\CancelMatchFight\MessageRequestCancelMatchFightSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\ActionChessMan\MessageNoticeActionChessManHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\UserData\MessageRequestUserDataSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\FilpChessMan\MessageNoticeFilpChessManHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\AMessageRequestSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\ActionChessMan\MessageRequestActionChessManSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\AdmitDefeat\MessageRequestAdmitDefeatSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\RankData\MessageRequestRankDataSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\FlipChessMan\MessageNoticeFlipChessManHander.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Client\GameClient.asmdef" />

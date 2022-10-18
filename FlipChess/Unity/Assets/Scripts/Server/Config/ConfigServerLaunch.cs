@@ -16,7 +16,6 @@ namespace GameServer
         public string MySqlSchemaName;
         public string MySqlCharacter;
     }
-    [GenConfigClass]
     public class ConfigServerLaunch : AConfig<ConfigServerLaunchElement>
     {
         [SerializeField]

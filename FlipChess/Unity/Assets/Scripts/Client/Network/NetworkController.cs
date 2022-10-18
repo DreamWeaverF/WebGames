@@ -17,6 +17,8 @@ namespace GameClient
 
         private IWebSocket m_socket;
         private readonly Dictionary<int, ETTask<AMessageResponse>> m_requestCallbacks = new Dictionary<int, ETTask<AMessageResponse>>();
+
+        private int m_rpcId;
         protected override void OnInit()
         {
             m_socket = new WebSocket(m_configClientLanch.ServerAddress);
@@ -33,6 +35,7 @@ namespace GameClient
         [SynchronizeMethod(SyncName = SyncName.MessageRequestSender)]
         private ETTask<AMessageResponse> OnMessageRequestSender(AMessageRequest request)
         {
+            request.RpcId = ++m_rpcId;
             byte[] bytes = MessagePackSerializer.Serialize<IMessage>(request, MessagePackSerializerOptions.Standard);
             m_socket.SendAsync(bytes);
             ETTask<AMessageResponse> task = ETTask<AMessageResponse>.Create(true);
@@ -74,7 +77,7 @@ namespace GameClient
 
         public async void TestCode()
         {
-            MessageResponseLogin response = await m_loginSenderSO.SendMessage("1234","4321");
+            MessageResponseLogin response = await m_loginSenderSO.SendMessage("1234", "4321");
             Debug.Log(response.UserId);
         }
     }

@@ -10,7 +10,7 @@ namespace GameServer
         public long UserId;
         public UserData UserData;
     }
-    [AutoGenSOClass]
+    [GenerateAutoClass]
     public class DatabaseUser : ADatabase<DatabaseUserElement, long>
     {
         

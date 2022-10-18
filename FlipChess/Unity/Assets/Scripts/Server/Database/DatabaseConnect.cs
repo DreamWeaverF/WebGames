@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GameServer
 {
-    [AutoGenSOClass]
+    [GenerateAutoClass]
     public class DatabaseConnect : ScriptableObject
     {
         [SerializeField]
@@ -21,17 +21,20 @@ namespace GameServer
 
         void OnEnable()
         {
-            mySqlConnectionList = new Queue<MySqlConnection>();
-            for (int i = 0; i < maxConnectCount; i++)
+            if (Application.isPlaying)
             {
-                try
+                mySqlConnectionList = new Queue<MySqlConnection>();
+                for (int i = 0; i < maxConnectCount; i++)
                 {
-                    MySqlConnection connection = new MySqlConnection(m_configServerLaunch.MysqlConnection);
-                    mySqlConnectionList.Enqueue(connection);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError(e.ToString());
+                    try
+                    {
+                        MySqlConnection connection = new MySqlConnection(m_configServerLaunch.MysqlConnection);
+                        mySqlConnectionList.Enqueue(connection);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError(e.ToString());
+                    }
                 }
             }
         }

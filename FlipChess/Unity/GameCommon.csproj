@@ -63,7 +63,6 @@
     <Compile Include="Assets\Scripts\Common\Message\MatchFight\MessageRequestMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Attribute\SynchronizeMethodAttribute.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AMessageResponse.cs" />
-    <Compile Include="Assets\Scripts\Common\Attribute\GenConfigClassAttribute.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AMessageRequest.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncFunc.cs" />
     <Compile Include="Assets\Scripts\Common\Message\MatchFight\MessageResponseMatchFight.cs" />
@@ -76,8 +75,8 @@
     <Compile Include="Assets\Scripts\Common\Timer\TimerHelper.cs" />
     <Compile Include="Assets\Scripts\Common\Message\UserData\MessageResponseUserData.cs" />
     <Compile Include="Assets\Scripts\Common\Config\AConfig.cs" />
-    <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageNoticeFilpChessMan.cs" />
-    <Compile Include="Assets\Scripts\Common\Message\Chat\MessageRequestChat.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageNoticeFlipChessMan.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\FightChat\MessageRequestFightChat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CancelMatchFight\MessageResponseCancelMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Attribute\AAttribute.cs" />
     <Compile Include="Assets\Scripts\Common\Data\Rank\RankData.cs" />
@@ -92,11 +91,11 @@
     <Compile Include="Assets\Scripts\Common\Message\ActionChessMan\MessageNoticeActionChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncName.cs" />
     <Compile Include="Assets\Scripts\Common\Data\Fight\EnumFight.cs" />
-    <Compile Include="Assets\Scripts\Common\Attribute\AutoGenSOClassAttribute.cs" />
+    <Compile Include="Assets\Scripts\Common\Attribute\GenerateAutoClassAttribute.cs" />
     <Compile Include="Assets\Scripts\Common\Data\Fight\FightDataExtensions.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AMessageNotice.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AdmitDefeat\MessageRequestAdmitDefeat.cs" />
-    <Compile Include="Assets\Scripts\Common\Message\Chat\MessageResponseChat.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\FightChat\MessageResponseFightChat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CancelMatchFight\MessageRequestCancelMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Message\RankData\MessageRequestRankData.cs" />
     <Compile Include="Assets\Scripts\Common\Message\JoinFight\MessageRequestJoinFight.cs" />
