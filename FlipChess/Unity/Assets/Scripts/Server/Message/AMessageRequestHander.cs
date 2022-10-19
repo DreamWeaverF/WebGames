@@ -8,7 +8,7 @@ namespace GameServer
     public abstract class AMessageRequestHander<T1,T2> : AMessageRequestHander where T1 : AMessageRequest where T2 : AMessageResponse, new()
     {
         [SerializeField]
-        private UserRespository m_userRespository;
+        protected UserRespository m_userRespository;
 
         private T2 m_message;
 

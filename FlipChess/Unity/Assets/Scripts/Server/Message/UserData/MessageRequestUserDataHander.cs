@@ -7,8 +7,6 @@ namespace GameServer
     [GenerateAutoClass]
     public class MessageRequestUserDataHander : AMessageRequestHander<MessageRequestUserData,MessageResponseUserData>
     {
-        [SerializeField]
-        private UserRespository m_userRespository;
         public override async Task<AMessageResponse> OnMessage(long userId, AMessageRequest request)
         {
             UserData userData = await m_userRespository.GetUserData(userId);

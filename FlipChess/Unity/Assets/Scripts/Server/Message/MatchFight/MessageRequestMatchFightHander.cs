@@ -7,8 +7,6 @@ namespace GameServer
     [GenerateAutoClass]
     public class MessageRequestMatchFightHander : AMessageRequestHander<MessageRequestMatchFight,MessageResponseMatchFight>
     {
-        [SerializeField]
-        private UserRespository m_userRespository;
         protected override async Task OnMessage(UserData userData, MessageRequestMatchFight request)
         {
             await Task.CompletedTask;

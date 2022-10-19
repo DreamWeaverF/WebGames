@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc61ce3af554c94199fe67cdac1e7c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 83e8ed53930798b4e9a123eb07d0bce5, type: 3}
   m_Name: MessageRequestAdmitDefeatSender
   m_EditorClassIdentifier: 
+  m_fightStorage: {fileID: 11400000, guid: b71282cbb87449a4b8aae9a9b0acd2a1, type: 2}
+  m_userStorage: {fileID: 11400000, guid: ae10b020be61df943af9196cb82b2d62, type: 2}

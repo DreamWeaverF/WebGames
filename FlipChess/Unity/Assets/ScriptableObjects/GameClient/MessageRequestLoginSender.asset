@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2914283a254e34e8accdadc6c8cbb5, type: 3}
   m_Name: MessageRequestLoginSender
   m_EditorClassIdentifier: 
+  m_sender: {fileID: 11400000, guid: 489150edf2f9ca54cb13a8ac0de31d8a, type: 2}

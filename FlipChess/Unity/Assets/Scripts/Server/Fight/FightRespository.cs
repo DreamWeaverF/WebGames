@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace GameServer
 {
+    [GenerateAutoClass]
     public class FightRespository : ScriptableObject
     {
         public Dictionary<int, FightData> FightDatas = new Dictionary<int, FightData>();

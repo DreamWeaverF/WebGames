@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99211fe41a5994e4c8d37786ef0ed229, type: 3}
   m_Name: MessageNoticeFlipChessManHander
   m_EditorClassIdentifier: 
+  m_fightStorage: {fileID: 11400000, guid: b71282cbb87449a4b8aae9a9b0acd2a1, type: 2}

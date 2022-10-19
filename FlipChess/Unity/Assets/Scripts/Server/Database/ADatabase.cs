@@ -19,7 +19,7 @@ namespace GameServer
     public abstract class ADatabase<TElement,TKey> : ScriptableObject where TElement : ADatabaseElement
     {
         [SerializeField]
-        private DatabaseConnect m_connectPool;
+        protected DatabaseConnect m_connectPool;
 
         private string m_tableName;
         private FieldInfo[] m_fields;

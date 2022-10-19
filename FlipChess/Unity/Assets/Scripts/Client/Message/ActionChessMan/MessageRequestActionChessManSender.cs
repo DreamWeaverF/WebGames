@@ -1,17 +1,30 @@
 ﻿using GameCommon;
-using ET;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GameClient
 {
     [GenerateAutoClass]
     public class MessageRequestActionChessManSender : AMessageRequestSender<MessageRequestActionChessMan,MessageResponseActionChessMan>
     {
-        public async ETTask<MessageResponseActionChessMan> SendMessage(GameCommon.Vector2I curPosition,GameCommon.Vector2I targetPosition)
+        [SerializeField]
+        private FightStorage m_fightStorage;
+        [SerializeField]
+        private UserStorage m_userStorage;
+        public async Task<bool> SendMessage(GameCommon.Vector2I curPosition,GameCommon.Vector2I targetPosition)
         {
-			m_request.CurPosition = curPosition;
+            if (m_fightStorage.FightData.CheckActionCheesMan(m_userStorage.UserData.UserId, curPosition, targetPosition))
+            {
+                return false;
+            }
+            m_request.CurPosition = curPosition;
 			m_request.TargetPosition = targetPosition;
-
-            return await SendMessageCore();
+            bool success = await BroadMessage();
+            if (!success)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

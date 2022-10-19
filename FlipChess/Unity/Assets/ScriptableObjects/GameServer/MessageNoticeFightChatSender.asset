@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28c5186548e2deb4bb3289f8ba10a2b4, type: 3}
-  m_Name: DatabaseConnectPool
+  m_Script: {fileID: 11500000, guid: 7aee8e5032c06f343a149227de95a4f1, type: 3}
+  m_Name: MessageNoticeFightChatSender
   m_EditorClassIdentifier: 
-  m_configServerLaunch: {fileID: 11400000, guid: e96d6b93f5a9580449b44c4649a5060f, type: 2}
+  m_bCloseSocket: 0

@@ -12,6 +12,7 @@ namespace GameCommon
         public ChessManActionType ActionType;
         public List<int> EatChessMans;
     }
+    [GenerateAutoClass]
     public class ConfigChessMan : AConfig<ConfigChessManElement>
     {
         

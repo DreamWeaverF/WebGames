@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33f01e94854dca740bc68353d2415382, type: 3}
-  m_Name: MessageNoticeFilpChessManHander
+  m_Script: {fileID: 11500000, guid: 03e93557b0422b84996ffaf9b5be4517, type: 3}
+  m_Name: FightStorage
   m_EditorClassIdentifier: 

@@ -1,16 +1,23 @@
 ﻿using GameCommon;
-using ET;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GameClient
 {
     [GenerateAutoClass]
     public class MessageRequestJoinFightSender : AMessageRequestSender<MessageRequestJoinFight,MessageResponseJoinFight>
     {
-        public async ETTask<MessageResponseJoinFight> SendMessage(System.Int32 fightId)
+        [SerializeField]
+        private FightStorage m_fightStorage;
+        public async Task<bool> SendMessage(System.Int32 fightId)
         {
 			m_request.FightId = fightId;
-
-            return await SendMessageCore();
+            bool success = await BroadMessage();
+            if (!success)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

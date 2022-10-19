@@ -23,4 +23,19 @@ namespace GameCommon
         Move,
         Jump,
     }
+    public enum FightState
+    {
+        None,
+        Wait,
+        Action,
+        End,
+    }
+    public enum FightUserState
+    {
+        None,
+        Join,
+        Wait,
+        Action,
+        End,
+    }
 }

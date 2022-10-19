@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Client\Message\JoinFight\MessageRequestJoinFightSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FightChat\MessageRequestFightChatSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FlipChessMan\MessageRequestFlipChessManSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\FlipChessMan\MessageNoticeFlipChessManHander.cs" />
     <Compile Include="Assets\Scripts\Client\TestCode.cs" />
     <Compile Include="Assets\Scripts\Client\Message\Error\MessageNoticeErrorHander.cs" />
     <Compile Include="Assets\Scripts\Client\Config\ConfigClientLaunch.cs" />
@@ -71,12 +72,15 @@
     <Compile Include="Assets\Scripts\Client\Message\CancelMatchFight\MessageRequestCancelMatchFightSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\ActionChessMan\MessageNoticeActionChessManHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\UserData\MessageRequestUserDataSender.cs" />
-    <Compile Include="Assets\Scripts\Client\Message\FilpChessMan\MessageNoticeFilpChessManHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AMessageRequestSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\ActionChessMan\MessageRequestActionChessManSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AdmitDefeat\MessageRequestAdmitDefeatSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\RankData\MessageRequestRankDataSender.cs" />
-    <Compile Include="Assets\Scripts\Client\Message\FlipChessMan\MessageNoticeFlipChessManHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\FightChat\MessageNoticeFightChatHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\JoinFight\MessageNoticeJoinFightHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Fight\FightStorage.cs" />
+    <Compile Include="Assets\Scripts\Client\Rank\RankStorage.cs" />
+    <Compile Include="Assets\Scripts\Client\User\UserStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Client\GameClient.asmdef" />

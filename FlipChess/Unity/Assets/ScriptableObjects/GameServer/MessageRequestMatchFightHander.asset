@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec9cd3a8b38ef74b839c27c8a934603, type: 3}
   m_Name: MessageRequestMatchFightHander
   m_EditorClassIdentifier: 
+  m_userRespository: {fileID: 11400000, guid: 2c702981dfe844c45be3f7590bcceffc, type: 2}

@@ -53,4 +53,4 @@ MonoBehaviour:
     MySqlPassword: ojbUpmo933rpTtOp
     MySqlSchemaName: FlipChess
     MySqlCharacter: utf8
-  m_launchType: 1
+  m_launchType: 0

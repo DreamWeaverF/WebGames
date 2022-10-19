@@ -13,7 +13,7 @@ namespace GameClient
         private ConfigClientLaunch m_configClientLanch;
 
         [SerializeField]
-        private MessageRequestLoginSender m_loginSenderSO;
+        private MessageRequestLoginSender m_loginSender;
 
         private IWebSocket m_socket;
         private readonly Dictionary<int, ETTask<AMessageResponse>> m_requestCallbacks = new Dictionary<int, ETTask<AMessageResponse>>();
@@ -77,8 +77,7 @@ namespace GameClient
 
         public async void TestCode()
         {
-            MessageResponseLogin response = await m_loginSenderSO.SendMessage("1234", "4321");
-            Debug.Log(response.UserId);
+            bool result = await m_loginSender.SendMessage("1234", "4321");
         }
     }
 }

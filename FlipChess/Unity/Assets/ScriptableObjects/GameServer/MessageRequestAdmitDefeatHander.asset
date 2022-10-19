@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69abe49a28ba2004dab788de20482e9e, type: 3}
   m_Name: MessageRequestAdmitDefeatHander
   m_EditorClassIdentifier: 
+  m_userRespository: {fileID: 11400000, guid: 2c702981dfe844c45be3f7590bcceffc, type: 2}
+  m_fightRespository: {fileID: 11400000, guid: eae4fcd74118363418a94b329b0a48e0, type: 2}

@@ -7,11 +7,9 @@ namespace GameServer
     public class FightController : AMonoBehaviour
     {
         [SerializeField]
-        private UserRespository m_userRespository = new UserRespository();
-        [SerializeField]
         private FightRespository m_fightRespository = new FightRespository();
         [SerializeField]
-        private MessageNoticeMatchFightSender m_noticeMatchFightSender = new MessageNoticeMatchFightSender();
+        private MessageNoticeMatchFightSender m_sender = new MessageNoticeMatchFightSender();
 
         private List<FightData> m_recyleFight = new List<FightData>();
         private int m_useFightId;
@@ -24,40 +22,26 @@ namespace GameServer
 
         }
         [SynchronizeMethod(SyncName = SyncName.MatchFightSuccess)]
-        private void OnMatchFightSuccess(long redUserID,long blueUserId)
+        private void OnMatchFightSuccess(long userId1,long userId2)
         {
-            m_userRespository.UserDatas.TryGetValue(redUserID, out UserData redUserData);
-            m_userRespository.UserDatas.TryGetValue(blueUserId, out UserData blueUserData);
             FightData fightData;
             if (m_recyleFight.Count != 0)
             {
                 fightData = m_recyleFight[0];
+                m_recyleFight.RemoveAt(0);
             }
             else
             {
                 fightData = new FightData();
                 fightData.FightId = ++m_useFightId;
+                fightData.Users = new Dictionary<long, FightDataUser>();
+                fightData.ChessMans = new Dictionary<Vector2I, int>();
             }
-
-            fightData.RedCampUserId = redUserID;
-            fightData.RedCampScore = 0;
-            fightData.RedCampNick = redUserData.UserNick;
-            fightData.RedCampHeadIcon = redUserData.UserHeadIcon;
-            fightData.RedCampEatList.Clear();
-
-            fightData.BlueCampUserId = redUserID;
-            fightData.BlueCampScore = 0;
-            fightData.BlueCampNick = redUserData.UserNick;
-            fightData.BlueCampHeadIcon = redUserData.UserHeadIcon;
-            fightData.BlueCampEatList.Clear();
-
-            fightData.LastOpearTime = 0;
-            fightData.PlayCamp = FightCamp.None;
-            fightData.RandomSeed = 100;
-            fightData.RandomCount = 0;
-            fightData.IsAction = true;
+            fightData.Reset();
+            fightData.Users.Add(userId1, new FightDataUser());
+            fightData.Users.Add(userId2, new FightDataUser());
             m_fightRespository.FightDatas.Add(fightData.FightId, fightData);
-            m_noticeMatchFightSender.SendMessage(new List<long>() { redUserID, blueUserId }, fightData.FightId);
+            m_sender.SendMessage(new List<long>() { userId1, userId2 }, fightData.FightId);
         }
         void Update()
         {
@@ -65,11 +49,10 @@ namespace GameServer
             foreach(FightData data in m_fightRespository.FightDatas.Values)
             {
                 data.Update();
-                if (data.IsAction)
+                if (data.State == FightState.End)
                 {
-                    continue;
+                    endlessFightList.Add(data.FightId);
                 }
-                endlessFightList.Add(data.FightId);
             }
             if(endlessFightList.Count <= 0)
             {

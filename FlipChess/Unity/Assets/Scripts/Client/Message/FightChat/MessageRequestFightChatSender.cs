@@ -1,16 +1,28 @@
 ﻿using GameCommon;
-using ET;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GameClient
 {
     [GenerateAutoClass]
     public class MessageRequestFightChatSender : AMessageRequestSender<MessageRequestFightChat,MessageResponseFightChat>
     {
-        public async ETTask<MessageResponseFightChat> SendMessage(System.String context)
+        [SerializeField]
+        private FightStorage m_fightStorage;
+        public async Task<bool> SendMessage(System.String context)
         {
+            if (m_fightStorage.FightData.CheckFightChat(context))
+            {
+                return false;
+            }
 			m_request.Context = context;
-
-            return await SendMessageCore();
+            bool success = await BroadMessage();
+            if (!success)
+            {
+                return false;
+            }
+            
+            return true;
         }
     }
 }

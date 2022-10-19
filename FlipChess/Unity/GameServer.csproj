@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\Server\Network\NetworkController.cs" />
     <Compile Include="Assets\Scripts\Server\Network\UserNetBehavior.cs" />
     <Compile Include="Assets\Scripts\Server\Message\ActionChessMan\MessageNoticeActionChessManSender.cs" />
+    <Compile Include="Assets\Scripts\Server\Rank\RankRespository.cs" />
     <Compile Include="Assets\Scripts\Server\Message\FightChat\MessageRequestFightChatHander.cs" />
     <Compile Include="Assets\Scripts\Server\Database\ADatabase.cs" />
     <Compile Include="Assets\Scripts\Server\User\UserRespository.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\Scripts\Server\Database\DatabaseCommandExtensions.cs" />
     <Compile Include="Assets\Scripts\Server\Config\ConfigServerLaunch.cs" />
     <Compile Include="Assets\Scripts\Server\Message\ActionChessMan\MessageRequestActionChessManHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\FlipChessMan\MessageNoticeFlipChessManSender.cs" />
     <Compile Include="Assets\Scripts\Server\Message\RankData\MessageRequestRankDataHander.cs" />
     <Compile Include="Assets\Scripts\Server\Message\UserData\MessageRequestUserDataHander.cs" />
     <Compile Include="Assets\Scripts\Server\Test.cs" />
@@ -86,8 +88,8 @@
     <Compile Include="Assets\Scripts\Server\Database\Account\DatabaseAccount.cs" />
     <Compile Include="Assets\Scripts\Server\Message\FlipChessMan\MessageRequestFlipChessManHander.cs" />
     <Compile Include="Assets\Scripts\Server\Message\CancelMatchFight\MessageRequestCancelMatchFightHander.cs" />
-    <Compile Include="Assets\Scripts\Server\Message\FlipChessMan\MessageNoticeFlipChessManSender.cs" />
-    <Compile Include="Assets\Scripts\Server\Rank\RankRespository.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\FightChat\MessageNoticeFightChatSender.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\JoinFight\MessageNoticeJoinFightSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Server\GameServer.asmdef" />

@@ -1,12 +1,11 @@
-using Codice.CM.Common;
 using GameCommon;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
 namespace GameServer
 {
+    [GenerateAutoClass]
     public class UserRespository : ScriptableObject
     {
         [SerializeField]

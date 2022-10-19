@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c5186548e2deb4bb3289f8ba10a2b4, type: 3}
   m_Name: DatabaseConnect
   m_EditorClassIdentifier: 
-  m_configServerLaunch: {fileID: 0}
+  m_configServerLaunch: {fileID: 11400000, guid: e96d6b93f5a9580449b44c4649a5060f, type: 2}

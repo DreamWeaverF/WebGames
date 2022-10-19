@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfcb86d5c0876e64199339509ef88718, type: 3}
   m_Name: MessageRequestLoginHander
   m_EditorClassIdentifier: 
+  m_userRespository: {fileID: 11400000, guid: 2c702981dfe844c45be3f7590bcceffc, type: 2}
+  m_databaseAccount: {fileID: 11400000, guid: 4c22884ad23afce4b8190cefcc762150, type: 2}

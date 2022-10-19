@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4d8f692fff1044488bf78c9f6bec60, type: 3}
   m_Name: MessageNoticeFightResultHander
   m_EditorClassIdentifier: 
+  m_userStorage: {fileID: 11400000, guid: ae10b020be61df943af9196cb82b2d62, type: 2}
+  m_fightStorage: {fileID: 11400000, guid: b71282cbb87449a4b8aae9a9b0acd2a1, type: 2}

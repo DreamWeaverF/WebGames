@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d348146c4c59d5b418664612c586b3ee, type: 3}
   m_Name: MessageRequestUserDataSender
   m_EditorClassIdentifier: 
+  m_userStorage: {fileID: 11400000, guid: ae10b020be61df943af9196cb82b2d62, type: 2}

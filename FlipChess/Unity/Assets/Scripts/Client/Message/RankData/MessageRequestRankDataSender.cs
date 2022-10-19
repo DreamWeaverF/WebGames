@@ -1,16 +1,28 @@
 ﻿using GameCommon;
-using ET;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GameClient
 {
     [GenerateAutoClass]
     public class MessageRequestRankDataSender : AMessageRequestSender<MessageRequestRankData,MessageResponseRankData>
     {
-        public async ETTask<MessageResponseRankData> SendMessage(System.Int32 rankId)
+        [SerializeField]
+        private RankStorage m_rankStorage;
+        public async Task<bool> SendMessage()
         {
-			m_request.RankId = rankId;
-
-            return await SendMessageCore();
+            if(m_rankStorage.LastRefreshTime > 100)
+            {
+                return true;
+            }
+            bool success = await BroadMessage();
+            if (!success)
+            {
+                return false;
+            }
+            m_rankStorage.LastRefreshTime = 1000;
+            m_rankStorage.Elements = m_response.RankDataElements;
+            return true;
         }
     }
 }

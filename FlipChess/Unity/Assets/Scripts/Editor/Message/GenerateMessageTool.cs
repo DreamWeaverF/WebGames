@@ -14,17 +14,23 @@ namespace GameEditor
     {
         private static string m_messageRequestSenderStr =
 @"using GameCommon;
-using ET;
+using System.Threading.Tasks;
 
 namespace GameClient
 {
     [GenerateAutoClass]
     public class #Request#Sender : AMessageRequestSender<#Request#,#Response#>
     {
-        public async ETTask<#Response#> SendMessage(#Params#)
+        public async Task<bool> SendMessage(#Params#)
         {
 #Context#
-            return await SendMessageCore();
+            bool success = await BroadMessage();
+            if (!success)
+            {
+                return false;
+            }
+            
+            return true;
         }
     }
 }";

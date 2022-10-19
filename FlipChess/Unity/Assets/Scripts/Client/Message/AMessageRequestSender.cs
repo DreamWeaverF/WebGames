@@ -19,10 +19,18 @@ namespace GameClient
                 return m_message;
             }
         }
-        protected async Task<T2> SendMessageCore()
+        protected T2 m_response;
+        protected async Task<bool> BroadMessage()
         {
             ETTask<AMessageResponse> task = SyncName.MessageRequestSender.BroadcastSyncEvent<AMessageRequest, ETTask<AMessageResponse>>(m_message);
-            return await task as T2;
+            AMessageResponse response = await task;
+            m_response = response as T2;
+            if(m_response.ErrorCode != MessageErrorCode.Success)
+            {
+                Debug.Log($"MessageError {m_response.GetType().Name} Error {m_response.ErrorCode}");
+                return false;
+            }
+            return true;
         }
     }
 }

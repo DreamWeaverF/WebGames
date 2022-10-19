@@ -23,4 +23,4 @@ MonoBehaviour:
     ServerAddress: ws://127.0.0.1:50001/connect
   - Id: 5
     ServerAddress: ws://127.0.0.1:50001/connect
-  m_launchType: 1
+  m_launchType: 0

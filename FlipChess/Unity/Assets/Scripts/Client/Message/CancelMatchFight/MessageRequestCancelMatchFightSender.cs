@@ -1,15 +1,23 @@
 ﻿using GameCommon;
-using ET;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GameClient
 {
     [GenerateAutoClass]
     public class MessageRequestCancelMatchFightSender : AMessageRequestSender<MessageRequestCancelMatchFight,MessageResponseCancelMatchFight>
     {
-        public async ETTask<MessageResponseCancelMatchFight> SendMessage()
+        [SerializeField]
+        private UserStorage m_userStorage;
+        public async Task<bool> SendMessage()
         {
-
-            return await SendMessageCore();
+            bool success = await BroadMessage();
+            if (!success)
+            {
+                return false;
+            }
+            m_userStorage.UserData.UserState = UserState.None;
+            return true;
         }
     }
 }

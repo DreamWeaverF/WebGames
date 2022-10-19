@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace GameServer
 {
+    [GenerateAutoClass]
     public class RankRespository : ScriptableObject
     {
         [SerializeField]
@@ -22,7 +23,6 @@ namespace GameServer
             {
                 return;
             }
-            new DatabaseRankElement();
             long rankCount = await m_databaseRank.TrySelectCount(m_rankId);
             if (rankCount == 0)
             {
@@ -39,6 +39,10 @@ namespace GameServer
         }
         async void OnDisable()
         {
+            if (!Application.isPlaying)
+            {
+                return;
+            }
             await m_databaseRank.TryUpdate(m_databaseRankElement);
         }
         public List<RankDataElement> RankDataElements
