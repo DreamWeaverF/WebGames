@@ -12,6 +12,8 @@ namespace GameServer
         private FightRespository m_fightResponsitory;
         [SerializeField]
         private MessageNoticeJoinFightSender m_sender;
+        [SerializeField]
+        private TimerStorage m_timerStorage;
         protected override async Task OnMessage(UserData userData, MessageRequestJoinFight request)
         {
             await Task.CompletedTask;
@@ -20,19 +22,12 @@ namespace GameServer
                 m_response.ErrorCode = MessageErrorCode.MessageError;
                 return;
             }
-            if (!fightData.Users.TryGetValue(userData.UserId,out FightDataUser fightUser))
+            if (!fightData.BindFightUserData(userData.UserId,userData.UserNick,userData.UserHeadIcon, m_timerStorage))
             {
                 m_response.ErrorCode = MessageErrorCode.MessageError;
                 return;
             }
-            fightUser.UserId = userData.UserId;
-            fightUser.UserNick = userData.UserNick;
-            fightUser.UserHeadIcon = userData.UserHeadIcon;
-            fightUser.State = FightUserState.Join;
-            fightUser.EatChessMans = new List<int>();
-            userData.UserState = UserState.Fight;
-            userData.FightID = request.FightId;
-            m_sender.SendMessage(fightData.UserIds, fightUser.UserId,fightUser.UserNick,fightUser.UserHeadIcon);
+            m_sender.SendMessage(fightData.UserIds, userData.UserId, userData.UserNick, userData.UserHeadIcon);
         }
     }
 }

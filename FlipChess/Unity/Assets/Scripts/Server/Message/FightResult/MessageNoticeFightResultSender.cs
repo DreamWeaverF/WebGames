@@ -6,9 +6,9 @@ namespace GameServer
     [GenerateAutoClass]
     public class MessageNoticeFightResultSender : AMessageNoticeSender<MessageNoticeFightResult>
     {
-        public void SendMessage(List<long> userIds, GameCommon.FightCamp winCamp,GameCommon.FightResultType fightResultType)
+        public void SendMessage(List<long> userIds, long winUserId,GameCommon.FightResultType fightResultType)
         {
-			m_notice.WinCamp = winCamp;
+			m_notice.WinUserId = winUserId;
 			m_notice.fightResultType = fightResultType;
 
             SendMessageCore(userIds);

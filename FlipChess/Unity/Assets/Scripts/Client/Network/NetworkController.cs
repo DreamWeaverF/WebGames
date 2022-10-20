@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ET;
 using MessagePack;
 using GameCommon;
+using System;
 
 namespace GameClient
 {
@@ -11,12 +12,13 @@ namespace GameClient
     {
         [SerializeField]
         private ConfigClientLaunch m_configClientLanch;
-
         [SerializeField]
         private MessageRequestLoginSender m_loginSender;
+        [SerializeField]
+        private SerializationDictionary<Type, AMessageNoticeHander> m_noticeHanders;
 
         private IWebSocket m_socket;
-        private readonly Dictionary<int, ETTask<AMessageResponse>> m_requestCallbacks = new Dictionary<int, ETTask<AMessageResponse>>();
+        private Dictionary<int, ETTask<AMessageResponse>> m_requestCallbacks = new Dictionary<int, ETTask<AMessageResponse>>();
 
         private int m_rpcId;
         protected override void OnInit()
@@ -30,7 +32,12 @@ namespace GameClient
         }
         protected override void UnInit()
         {
-
+            m_socket.OnOpen -= OnSocketOpen;
+            m_socket.OnMessage -= OnSocketMessage;
+            m_socket.OnClose -= OnSocketClose;
+            m_socket.OnError -= OnSocketError;
+            m_socket.CloseAsync();
+            m_socket = null;
         }
         [SynchronizeMethod(SyncName = SyncName.MessageRequestSender)]
         private ETTask<AMessageResponse> OnMessageRequestSender(AMessageRequest request)
@@ -56,28 +63,26 @@ namespace GameClient
                     m_requestCallbacks.Remove(response.RpcId);
                     break;
                 case AMessageNotice notice:
-
+                    if(!m_noticeHanders.TryGetValue(notice.GetType(),out AMessageNoticeHander noticeHander))
+                    {
+                        return;
+                    }
+                    noticeHander.OnMessage(notice);
                     break;
             }
         }
-        private void OnSocketOpen(object sender, OpenEventArgs e)
+        private async void OnSocketOpen(object sender, OpenEventArgs e)
         {
             Debug.Log("Client SocketOpen");
-            TestCode();
+            await m_loginSender.SendMessage("1234", "4321");
         }
         private void OnSocketClose(object sender, CloseEventArgs e)
         {
-
+            Debug.Log($"Client SocketClose: {e.Reason}");
         }
-
         private void OnSocketError(object sender, ErrorEventArgs e)
         {
-
-        }
-
-        public async void TestCode()
-        {
-            bool result = await m_loginSender.SendMessage("1234", "4321");
+            Debug.Log($"Client SocketClose: {e.Message}");
         }
     }
 }

@@ -68,19 +68,19 @@
     <Compile Include="Assets\Scripts\Client\Network\NetworkController.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AMessageNoticeHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FightResult\MessageNoticeFightResultHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\FightChat\MessageNoticeFightChatHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\JoinFight\MessageNoticeJoinFightHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\MatchFight\MessageNoticeMatchFightHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\CancelMatchFight\MessageRequestCancelMatchFightSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\ActionChessMan\MessageNoticeActionChessManHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\UserData\MessageRequestUserDataSender.cs" />
+    <Compile Include="Assets\Scripts\Client\User\UserStorage.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AMessageRequestSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Rank\RankStorage.cs" />
     <Compile Include="Assets\Scripts\Client\Message\ActionChessMan\MessageRequestActionChessManSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AdmitDefeat\MessageRequestAdmitDefeatSender.cs" />
-    <Compile Include="Assets\Scripts\Client\Message\RankData\MessageRequestRankDataSender.cs" />
-    <Compile Include="Assets\Scripts\Client\Message\FightChat\MessageNoticeFightChatHander.cs" />
-    <Compile Include="Assets\Scripts\Client\Message\JoinFight\MessageNoticeJoinFightHander.cs" />
     <Compile Include="Assets\Scripts\Client\Fight\FightStorage.cs" />
-    <Compile Include="Assets\Scripts\Client\Rank\RankStorage.cs" />
-    <Compile Include="Assets\Scripts\Client\User\UserStorage.cs" />
+    <Compile Include="Assets\Scripts\Client\Message\RankData\MessageRequestRankDataSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Client\GameClient.asmdef" />

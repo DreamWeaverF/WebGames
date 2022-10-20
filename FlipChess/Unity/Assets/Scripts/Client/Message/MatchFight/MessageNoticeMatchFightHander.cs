@@ -1,5 +1,4 @@
 ﻿using GameCommon;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameClient
@@ -12,14 +11,13 @@ namespace GameClient
         [SerializeField]
         private FightStorage m_fightStorage;
         [SerializeField]
-        private MessageRequestJoinFightSender m_sender;
+        private TimerStorage m_timerStorage;
         protected override void OnMessage(MessageNoticeMatchFight notice)
         {
             m_userStorage.UserData.UserState = UserState.Fight;
             m_userStorage.UserData.FightID = notice.FightId;
-            m_fightStorage.FightData.Reset();
+            m_fightStorage.FightData.Reset(m_timerStorage);
             m_fightStorage.FightData.FightId = notice.FightId;
-            m_sender.SendMessage(notice.FightId);
         }
     }
 }

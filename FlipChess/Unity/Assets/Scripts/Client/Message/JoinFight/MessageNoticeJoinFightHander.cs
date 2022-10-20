@@ -11,15 +11,12 @@ namespace GameClient
         private UserStorage m_userStorage;
         [SerializeField]
         private FightStorage m_fightStorage;
+        [SerializeField]
+        private TimerStorage m_timerStorage;
         protected override void OnMessage(MessageNoticeJoinFight notice)
         {
-            m_fightStorage.FightData.Users.Add(m_userStorage.UserData.UserId, new FightDataUser()
-            {
-                UserId = m_userStorage.UserData.UserId,
-                UserNick = m_userStorage.UserData.UserNick,
-                UserHeadIcon = m_userStorage.UserData.UserHeadIcon,
-                EatChessMans = new List<int>()
-            });
+            m_fightStorage.FightData.Users.Add(m_userStorage.UserData.UserId, new FightUserData());
+            m_fightStorage.FightData.BindFightUserData(notice.UserId,notice.UserNick,notice.UserHeadIcon, m_timerStorage);
         }
     }
 }

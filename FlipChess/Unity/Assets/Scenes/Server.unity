@@ -169,3 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_configServerLaunch: {fileID: 11400000, guid: e96d6b93f5a9580449b44c4649a5060f, type: 2}
   m_loginHander: {fileID: 11400000, guid: 7811d269e0d1c684ca84b849a46078bc, type: 2}
+  m_test:
+    m_values:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}

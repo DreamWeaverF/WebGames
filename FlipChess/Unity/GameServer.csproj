@@ -78,18 +78,18 @@
     <Compile Include="Assets\Scripts\Server\Test.cs" />
     <Compile Include="Assets\Scripts\Server\Message\AdmitDefeat\MessageRequestAdmitDefeatHander.cs" />
     <Compile Include="Assets\Scripts\Server\Fight\MatchFightController.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\FightChat\MessageNoticeFightChatSender.cs" />
     <Compile Include="Assets\Scripts\Server\Message\Error\MessageNoticeErrorSender.cs" />
     <Compile Include="Assets\Scripts\Server\Fight\FightRespository.cs" />
     <Compile Include="Assets\Scripts\Server\Message\MatchFight\MessageRequestMatchFightHander.cs" />
     <Compile Include="Assets\Scripts\Server\Fight\FightController.cs" />
+    <Compile Include="Assets\Scripts\Server\Message\JoinFight\MessageNoticeJoinFightSender.cs" />
     <Compile Include="Assets\Scripts\Server\Message\MatchFight\MessageNoticeMatchFightSender.cs" />
     <Compile Include="Assets\Scripts\Server\Database\User\DatabaseUser.cs" />
     <Compile Include="Assets\Scripts\Server\Message\JoinFight\MessageRequestJoinFightHander.cs" />
     <Compile Include="Assets\Scripts\Server\Database\Account\DatabaseAccount.cs" />
     <Compile Include="Assets\Scripts\Server\Message\FlipChessMan\MessageRequestFlipChessManHander.cs" />
     <Compile Include="Assets\Scripts\Server\Message\CancelMatchFight\MessageRequestCancelMatchFightHander.cs" />
-    <Compile Include="Assets\Scripts\Server\Message\FightChat\MessageNoticeFightChatSender.cs" />
-    <Compile Include="Assets\Scripts\Server\Message\JoinFight\MessageNoticeJoinFightSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Server\GameServer.asmdef" />

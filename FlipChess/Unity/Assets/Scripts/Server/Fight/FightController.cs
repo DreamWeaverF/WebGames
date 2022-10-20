@@ -7,9 +7,13 @@ namespace GameServer
     public class FightController : AMonoBehaviour
     {
         [SerializeField]
-        private FightRespository m_fightRespository = new FightRespository();
+        private FightRespository m_fightRespository;
         [SerializeField]
-        private MessageNoticeMatchFightSender m_sender = new MessageNoticeMatchFightSender();
+        private MessageNoticeMatchFightSender m_matchFightSender;
+        [SerializeField]
+        private MessageNoticeFightResultSender m_fightResultSender;
+        [SerializeField]
+        private TimerStorage m_timerStorage;
 
         private List<FightData> m_recyleFight = new List<FightData>();
         private int m_useFightId;
@@ -34,24 +38,26 @@ namespace GameServer
             {
                 fightData = new FightData();
                 fightData.FightId = ++m_useFightId;
-                fightData.Users = new Dictionary<long, FightDataUser>();
+                fightData.Users = new Dictionary<long, FightUserData>();
                 fightData.ChessMans = new Dictionary<Vector2I, int>();
             }
-            fightData.Reset();
-            fightData.Users.Add(userId1, new FightDataUser());
-            fightData.Users.Add(userId2, new FightDataUser());
+            fightData.Reset(m_timerStorage);
+            fightData.Users.Add(userId1, new FightUserData());
+            fightData.Users.Add(userId2, new FightUserData());
             m_fightRespository.FightDatas.Add(fightData.FightId, fightData);
-            m_sender.SendMessage(new List<long>() { userId1, userId2 }, fightData.FightId);
+            m_matchFightSender.SendMessage(new List<long>() { userId1, userId2 }, fightData.FightId);
         }
         void Update()
         {
             List<int> endlessFightList = new List<int>();
             foreach(FightData data in m_fightRespository.FightDatas.Values)
             {
-                data.Update();
+                data.Update(m_timerStorage);
                 if (data.State == FightState.End)
                 {
                     endlessFightList.Add(data.FightId);
+                    //
+                    m_fightResultSender.SendMessage(data.UserIds, data.WinUserId, data.FightResultType);
                 }
             }
             if(endlessFightList.Count <= 0)

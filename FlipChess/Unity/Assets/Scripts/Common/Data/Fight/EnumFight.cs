@@ -26,16 +26,17 @@ namespace GameCommon
     public enum FightState
     {
         None,
-        Wait,
-        Action,
+        Start,
+        Progress,
         End,
     }
     public enum FightUserState
     {
         None,
-        Join,
-        Wait,
-        Action,
+        Start,
+        WaitAction,
+        InAction,
+        AdmitDefeat,
         End,
     }
 }

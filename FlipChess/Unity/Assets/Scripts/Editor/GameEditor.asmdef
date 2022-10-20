@@ -2,7 +2,9 @@
     "name": "GameEditor",
     "rootNamespace": "GameEditor",
     "references": [
-        "GUID:816a2374862983147965db1b3cc0f6ba"
+        "GUID:816a2374862983147965db1b3cc0f6ba",
+        "GUID:f617297254ef79747a1dea62c3a49640",
+        "GUID:5a267cb425cc9fc49ae4de38276cedea"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

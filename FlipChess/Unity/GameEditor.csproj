@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Editor\Message\GenerateMessageTool.cs" />
     <Compile Include="Assets\Scripts\Editor\Config\GenerateConfigTool.cs" />
+    <Compile Include="Assets\Scripts\Editor\NetworkController\NetworkControllerEditor.cs" />
     <Compile Include="Assets\Scripts\Editor\Auto\GenerateAutoTool.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -759,6 +760,14 @@
     <ProjectReference Include="GameCommon.csproj">
       <Project>{469CB5C6-FE28-CB30-5A39-DC9C4F18255D}</Project>
       <Name>GameCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="GameServer.csproj">
+      <Project>{38818AAF-D382-BFCF-381E-D790D62694D8}</Project>
+      <Name>GameServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="GameClient.csproj">
+      <Project>{81393A41-1C4D-30DD-FF87-6881906CE310}</Project>
+      <Name>GameClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

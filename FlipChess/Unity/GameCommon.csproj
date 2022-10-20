@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Common\Message\RankData\MessageResponseRankData.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncAction.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FightResult\MessageNoticeFightResult.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\JoinFight\MessageNoticeJoinFight.cs" />
     <Compile Include="Assets\Scripts\Common\Message\JoinFight\MessageResponseJoinFight.cs" />
     <Compile Include="Assets\Scripts\Common\Message\MatchFight\MessageRequestMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Attribute\SynchronizeMethodAttribute.cs" />
@@ -72,8 +73,10 @@
     <Compile Include="Assets\Scripts\Common\Message\ActionChessMan\MessageResponseActionChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageResponseFlipChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncHelper.cs" />
-    <Compile Include="Assets\Scripts\Common\Timer\TimerHelper.cs" />
+    <Compile Include="Assets\Scripts\Common\Timer\TimerStorage.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\FightChat\MessageNoticeFightChat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\UserData\MessageResponseUserData.cs" />
+    <Compile Include="Assets\Scripts\Common\Component\SerializationDictionary.cs" />
     <Compile Include="Assets\Scripts\Common\Config\AConfig.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageNoticeFlipChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FightChat\MessageRequestFightChat.cs" />
@@ -92,7 +95,6 @@
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncName.cs" />
     <Compile Include="Assets\Scripts\Common\Data\Fight\EnumFight.cs" />
     <Compile Include="Assets\Scripts\Common\Attribute\GenerateAutoClassAttribute.cs" />
-    <Compile Include="Assets\Scripts\Common\Data\Fight\FightDataExtensions.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AMessageNotice.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AdmitDefeat\MessageRequestAdmitDefeat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FightChat\MessageResponseFightChat.cs" />
@@ -109,8 +111,6 @@
     <Compile Include="Assets\Scripts\Common\Component\Vector3I.cs" />
     <Compile Include="Assets\Scripts\Common\Config\ChessMan\ConfigChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CommonError\MessageNoticeError.cs" />
-    <Compile Include="Assets\Scripts\Common\Message\FightChat\MessageNoticeFightChat.cs" />
-    <Compile Include="Assets\Scripts\Common\Message\JoinFight\MessageNoticeJoinFight.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Common\GameCommon.asmdef" />

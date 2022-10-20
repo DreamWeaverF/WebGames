@@ -1,6 +1,8 @@
 using MessagePack;
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace GameCommon
 {
@@ -20,12 +22,9 @@ namespace GameCommon
         {
             InitElementData();
         }
-
         public void OnBeforeSerialize()
         {
-
         }
-
         protected virtual void InitElementData()
         {
             m_elements.Clear();
@@ -39,7 +38,6 @@ namespace GameCommon
                 m_elements.Add(element.Id, element);
             }
         }
-
         public bool TryGetValue(int id,out T1 value)
         {
             return m_elements.TryGetValue(id, out value);

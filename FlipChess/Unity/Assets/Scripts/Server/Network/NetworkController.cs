@@ -14,10 +14,10 @@ namespace GameServer
         private ConfigServerLaunch m_configServerLaunch;
         [SerializeField]
         private MessageRequestLoginHander m_loginHander;
+        [SerializeField]
+        private SerializationDictionary<Type,AMessageRequestHander> m_requestHanders;
 
         private Dictionary<long, UserNetBehavior> m_userNets = new Dictionary<long, UserNetBehavior>();
-        private Dictionary<Type, AMessageRequestHander> m_requestHanders = new Dictionary<Type, AMessageRequestHander>();
-
         private MessageNoticeError m_noticeError = new MessageNoticeError();
 
         private WebSocketServer m_webScoketServer;
@@ -91,21 +91,20 @@ namespace GameServer
                 if (responseLogin.ErrorCode == MessageErrorCode.Success)
                 {
                     net.UserId = responseLogin.UserId;
-                    if (m_userNets.TryGetValue(responseLogin.UserId,out UserNetBehavior rpNet))
+                    if (m_userNets.TryGetValue(responseLogin.UserId,out UserNetBehavior rNet))
                     {
                         m_noticeError.ErrorCode = MessageErrorCode.OtherLogin;
                         bytes = MessagePackSerializer.Serialize<IMessage>(m_noticeError);
-                        rpNet.SendMessage(bytes, true);
+                        rNet.SendMessage(bytes, true);
                         m_userNets.Remove(responseLogin.UserId);
                     }
                     m_userNets.Add(responseLogin.UserId, net);
                 }
-
                 bytes = MessagePackSerializer.Serialize<IMessage>(responseLogin);
                 net.SendMessage(bytes, true);
                 return;
             }
-            if(!m_requestHanders.TryGetValue(type, out AMessageRequestHander hander))
+            if (!m_requestHanders.TryGetValue(type, out AMessageRequestHander hander))
             {
                 m_noticeError.ErrorCode = MessageErrorCode.MessageError;
                 bytes = MessagePackSerializer.Serialize<IMessage>(m_noticeError);

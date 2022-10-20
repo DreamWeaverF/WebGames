@@ -15,7 +15,7 @@ namespace GameClient
                 if(m_fightData == null)
                 {
                     m_fightData = new FightData();
-                    m_fightData.Users = new Dictionary<long, FightDataUser>();
+                    m_fightData.Users = new Dictionary<long, FightUserData>();
                     m_fightData.ChessMans = new Dictionary<Vector2I, int>();
                 }
                 return m_fightData;
