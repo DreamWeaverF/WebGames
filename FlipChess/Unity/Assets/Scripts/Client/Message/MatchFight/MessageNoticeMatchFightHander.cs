@@ -16,8 +16,7 @@ namespace GameClient
         {
             m_userStorage.UserData.UserState = UserState.Fight;
             m_userStorage.UserData.FightID = notice.FightId;
-            m_fightStorage.FightData.Reset(m_timerStorage);
-            m_fightStorage.FightData.FightId = notice.FightId;
+            m_fightStorage.FightData.Start(notice.FightId,notice.UserId1,notice.UserId2,m_timerStorage);
         }
     }
 }

@@ -15,8 +15,7 @@ namespace GameClient
         private TimerStorage m_timerStorage;
         protected override void OnMessage(MessageNoticeJoinFight notice)
         {
-            m_fightStorage.FightData.Users.Add(m_userStorage.UserData.UserId, new FightUserData());
-            m_fightStorage.FightData.BindFightUserData(notice.UserId,notice.UserNick,notice.UserHeadIcon, m_timerStorage);
+            m_fightStorage.FightData.ExecuteEnterUser(notice.UserId,notice.UserNick,notice.UserHeadIcon, m_timerStorage);
         }
     }
 }

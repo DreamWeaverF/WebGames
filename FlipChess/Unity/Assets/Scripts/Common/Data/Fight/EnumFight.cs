@@ -9,6 +9,7 @@ namespace GameCommon
         None,
         Normal,
         AdmitDefeat,
+        NotEnter,
         RunAway,
     }
     public enum FightCamp
@@ -28,15 +29,6 @@ namespace GameCommon
         None,
         Start,
         Progress,
-        End,
-    }
-    public enum FightUserState
-    {
-        None,
-        Start,
-        WaitAction,
-        InAction,
-        AdmitDefeat,
         End,
     }
 }

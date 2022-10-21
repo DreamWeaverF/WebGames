@@ -13,7 +13,10 @@ namespace GameClient
         private UserStorage m_userStorage;
         public async Task<bool> SendMessage()
         {
-            m_fightStorage.FightData.CheckAdmitDefeat(m_userStorage.UserData.UserId);
+            if (!m_fightStorage.FightData.CheckAdmitDefeat())
+            {
+                return false;
+            }
             bool success = await BroadMessage();
             if (!success)
             {

@@ -11,7 +11,7 @@ namespace GameClient
         private FightStorage m_fightStorage;
         public async Task<bool> SendMessage(System.String context)
         {
-            if (m_fightStorage.FightData.CheckFightChat(context))
+            if (!m_fightStorage.FightData.CheckFightChat(context))
             {
                 return false;
             }

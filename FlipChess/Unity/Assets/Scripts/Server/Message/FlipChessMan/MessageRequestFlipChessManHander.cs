@@ -11,6 +11,10 @@ namespace GameServer
         private FightRespository m_fightRespository;
         [SerializeField]
         private MessageNoticeFlipChessManSender m_sender;
+        [SerializeField]
+        private ConfigChessMan m_configChessMan;
+        [SerializeField]
+        private TimerStorage m_timerStorage;
         protected override async Task OnMessage(UserData userData, MessageRequestFlipChessMan request)
         {
             await Task.CompletedTask;
@@ -24,7 +28,7 @@ namespace GameServer
                 m_response.ErrorCode = MessageErrorCode.MessageError;
                 return;
             }
-            fightData.ExecuteFlipCheesMan(request.TargetPosition);
+            fightData.ExecuteFlipCheesMan(request.TargetPosition, m_timerStorage, m_configChessMan);
             m_sender.SendMessage(fightData.UserIds, request.TargetPosition);
         }
     }

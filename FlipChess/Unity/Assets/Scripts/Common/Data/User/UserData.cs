@@ -24,5 +24,16 @@ namespace GameCommon
         public int FightID { get; set; }
         [IgnoreMember]
         public long LastMessageTime { get; set; }
+
+        public void FightWin()
+        {
+            UserWinMatch += 1;
+            UserScore += 10;
+        }
+        public void FightLose()
+        {
+            UserLoseMatch += 1;
+            UserScore -= 10;
+        }
     }
 }

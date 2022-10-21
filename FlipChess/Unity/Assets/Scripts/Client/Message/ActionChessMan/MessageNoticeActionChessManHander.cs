@@ -8,9 +8,13 @@ namespace GameClient
     {
         [SerializeField]
         private FightStorage m_fightStorage;
+        [SerializeField]
+        private TimerStorage m_timerStorage;
+        [SerializeField]
+        private ConfigChessMan m_configChessMan;
         protected override void OnMessage(MessageNoticeActionChessMan notice)
         {
-            m_fightStorage.FightData.ExecuteActionChessMan(notice.CurPosition, notice.TargetPosition);
+            m_fightStorage.FightData.ExecuteActionChessMan(notice.CurPosition, notice.TargetPosition, m_timerStorage, m_configChessMan);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace GameServer
         [SerializeField]
         private FightRespository m_fightRespository;
         [SerializeField]
+        private UserRespository m_userRespository;
+        [SerializeField]
         private MessageNoticeMatchFightSender m_matchFightSender;
         [SerializeField]
         private MessageNoticeFightResultSender m_fightResultSender;
@@ -38,14 +40,12 @@ namespace GameServer
             {
                 fightData = new FightData();
                 fightData.FightId = ++m_useFightId;
-                fightData.Users = new Dictionary<long, FightUserData>();
                 fightData.ChessMans = new Dictionary<Vector2I, int>();
+                fightData.UnUseChessMans = new List<int>();
             }
-            fightData.Reset(m_timerStorage);
-            fightData.Users.Add(userId1, new FightUserData());
-            fightData.Users.Add(userId2, new FightUserData());
+            fightData.Start(fightData.FightId,userId1,userId2, m_timerStorage);
             m_fightRespository.FightDatas.Add(fightData.FightId, fightData);
-            m_matchFightSender.SendMessage(new List<long>() { userId1, userId2 }, fightData.FightId);
+            m_matchFightSender.SendMessage(new List<long>() { userId1, userId2 }, fightData.FightId,userId1,userId2);
         }
         void Update()
         {
@@ -57,7 +57,15 @@ namespace GameServer
                 {
                     endlessFightList.Add(data.FightId);
                     //
-                    m_fightResultSender.SendMessage(data.UserIds, data.WinUserId, data.FightResultType);
+                    m_fightResultSender.SendMessage(data.UserIds, data.WinUserId, data.ResultType);
+                    if(m_userRespository.UserDatas.TryGetValue(data.WinUserId,out UserData winUserData))
+                    {
+                        winUserData.FightWin();
+                    }
+                    if(m_userRespository.UserDatas.TryGetValue(data.LoseUserId,out UserData loseUserData))
+                    {
+                        loseUserData.FightLose();
+                    }
                 }
             }
             if(endlessFightList.Count <= 0)

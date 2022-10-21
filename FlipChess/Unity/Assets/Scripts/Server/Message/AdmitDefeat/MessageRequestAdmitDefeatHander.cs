@@ -17,7 +17,7 @@ namespace GameServer
                 m_response.ErrorCode = MessageErrorCode.MessageError;
                 return;
             }
-            if (!fightData.CheckAdmitDefeat(userData.UserId))
+            if (!fightData.CheckAdmitDefeat())
             {
                 m_response.ErrorCode = MessageErrorCode.MessageError;
                 return;

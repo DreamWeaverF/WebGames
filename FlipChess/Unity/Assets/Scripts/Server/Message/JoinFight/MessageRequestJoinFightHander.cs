@@ -22,11 +22,12 @@ namespace GameServer
                 m_response.ErrorCode = MessageErrorCode.MessageError;
                 return;
             }
-            if (!fightData.BindFightUserData(userData.UserId,userData.UserNick,userData.UserHeadIcon, m_timerStorage))
+            if (!fightData.CheckEnterUser(userData.UserId))
             {
                 m_response.ErrorCode = MessageErrorCode.MessageError;
                 return;
             }
+            fightData.ExecuteEnterUser(userData.UserId, userData.UserNick, userData.UserHeadIcon, m_timerStorage);
             m_sender.SendMessage(fightData.UserIds, userData.UserId, userData.UserNick, userData.UserHeadIcon);
         }
     }

@@ -11,6 +11,7 @@ namespace GameCommon
         public FightCamp Camp;
         public ChessManActionType ActionType;
         public List<int> EatChessMans;
+        public int Score;
     }
     [GenerateAutoClass]
     public class ConfigChessMan : AConfig<ConfigChessManElement>
