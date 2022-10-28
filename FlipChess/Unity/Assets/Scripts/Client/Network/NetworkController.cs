@@ -40,7 +40,7 @@ namespace GameClient
             m_socket = null;
         }
         [SynchronizeMethod(SyncName = SyncName.MessageRequestSender)]
-        private ETTask<AMessageResponse> OnMessageRequestSender(AMessageRequest request)
+        private ETTask<AMessageResponse> OnCallbackMessageRequestSender(AMessageRequest request)
         {
             request.RpcId = ++m_rpcId;
             byte[] bytes = MessagePackSerializer.Serialize<IMessage>(request, MessagePackSerializerOptions.Standard);

@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Common\Message\MatchFight\MessageResponseMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Component\AMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Common\Message\Login\MessageRequestLogin.cs" />
+    <Compile Include="Assets\Scripts\Common\Attribute\UIComponentFieldAttribute.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageRequestFlipChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\ActionChessMan\MessageResponseActionChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageResponseFlipChessMan.cs" />

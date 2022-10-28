@@ -11,11 +11,9 @@ namespace GameServer
         [SerializeField]
         private DatabaseUser m_databaseUser;
 
-        private DatabaseUserElement m_databaseUserElement;
-
+        private DatabaseUserElement m_databaseUserElement = new DatabaseUserElement();
         public Dictionary<long, UserData> UserDatas = new Dictionary<long, UserData>();
-
-        public async Task<UserData> GetUserData(long userId)
+        public async Task<UserData> RequestUserData(long userId)
         {
             if(!UserDatas.TryGetValue(userId,out UserData userData))
             {
@@ -37,6 +35,16 @@ namespace GameServer
                 UserDatas.Add(userId, userData);
             }
             return userData;
+        }
+        public async Task DeleteUserData(long userId)
+        {
+            if (!UserDatas.TryGetValue(userId, out UserData userData))
+            {
+                return;
+            }
+            m_databaseUserElement.UserId = userId;
+            m_databaseUserElement.UserData = userData;
+            await m_databaseUser.TryUpdate(m_databaseUserElement);
         }
     }
 }

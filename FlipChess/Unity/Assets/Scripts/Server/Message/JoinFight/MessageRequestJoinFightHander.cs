@@ -12,11 +12,10 @@ namespace GameServer
         private FightRespository m_fightResponsitory;
         [SerializeField]
         private MessageNoticeJoinFightSender m_sender;
-        [SerializeField]
-        private TimerStorage m_timerStorage;
         protected override async Task OnMessage(UserData userData, MessageRequestJoinFight request)
         {
             await Task.CompletedTask;
+
             if(!m_fightResponsitory.FightDatas.TryGetValue(request.FightId,out FightData fightData))
             {
                 m_response.ErrorCode = MessageErrorCode.MessageError;

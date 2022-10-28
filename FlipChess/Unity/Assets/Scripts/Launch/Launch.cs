@@ -19,7 +19,7 @@ namespace GameLaunch
         {
             AsyncOperation asy = SceneManager.LoadSceneAsync(m_serverSceneName, LoadSceneMode.Additive);
             yield return asy;
-            yield return 10;
+            yield return 1000;
             asy = SceneManager.LoadSceneAsync(m_loadingSceneName, LoadSceneMode.Additive);
             yield return asy;
             asy = SceneManager.UnloadSceneAsync(this.gameObject.name);

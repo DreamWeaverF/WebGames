@@ -132,7 +132,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 147177360}
-  - component: {fileID: 147177361}
+  - component: {fileID: 147177363}
+  - component: {fileID: 147177364}
+  - component: {fileID: 147177365}
+  - component: {fileID: 147177366}
   m_Layer: 0
   m_Name: Server
   m_TagString: Untagged
@@ -155,7 +158,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &147177361
+--- !u!114 &147177363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147177358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a964deafbb513498fa3cf8be3882a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &147177364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147177358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef70dc9ab54111c459828dde9e00ab9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fightRespository: {fileID: 11400000, guid: eae4fcd74118363418a94b329b0a48e0, type: 2}
+  m_userRespository: {fileID: 11400000, guid: 2c702981dfe844c45be3f7590bcceffc, type: 2}
+  m_matchFightSender: {fileID: 11400000, guid: 7e4bf3d30dd7a7f4997baaa4b41979dd, type: 2}
+  m_fightResultSender: {fileID: 11400000, guid: afe2f0196e1bdc94e89c1a684acec475, type: 2}
+  m_timerStorage: {fileID: 11400000, guid: eea8713638bc12a4e845e7a09c6a327b, type: 2}
+--- !u!114 &147177365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,8 +201,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_configServerLaunch: {fileID: 11400000, guid: e96d6b93f5a9580449b44c4649a5060f, type: 2}
   m_loginHander: {fileID: 11400000, guid: 7811d269e0d1c684ca84b849a46078bc, type: 2}
-  m_test:
+  m_requestHanders:
     m_values:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 2cac6c45f4967a1408bd71ecfdf7c1a8, type: 2}
+    - {fileID: 11400000, guid: d7cb210b98b775244af8ca2fe1f08c74, type: 2}
+    - {fileID: 11400000, guid: fe931b394ca5aca42b8678113a8d6c16, type: 2}
+    - {fileID: 11400000, guid: 2e9026a88e20e444d97a1f85a77f6ebd, type: 2}
+    - {fileID: 11400000, guid: 52d716a225be48545ae247cf31c0eecb, type: 2}
+    - {fileID: 11400000, guid: 228372d1d5af78c42abf452da3b0db30, type: 2}
+    - {fileID: 11400000, guid: 7811d269e0d1c684ca84b849a46078bc, type: 2}
+    - {fileID: 11400000, guid: 2ef420e6e53c93d45b8b1a8a6d77c773, type: 2}
+    - {fileID: 11400000, guid: 456b4629bfa79e24e866a66b31ae581e, type: 2}
+    - {fileID: 11400000, guid: 9b3254c09920da94b95e6e99e07dbc4b, type: 2}
+--- !u!114 &147177366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147177358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ae6a85954c87b429958a177d802f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_configServerLaunch: {fileID: 11400000, guid: e96d6b93f5a9580449b44c4649a5060f, type: 2}
+  m_databases:
+  - {fileID: 11400000, guid: 4c22884ad23afce4b8190cefcc762150, type: 2}
+  - {fileID: 11400000, guid: fd23874e83a680a4e80fde211f489a84, type: 2}
+  - {fileID: 11400000, guid: 1f84c6cee55bdcf4dabf84b34d551261, type: 2}

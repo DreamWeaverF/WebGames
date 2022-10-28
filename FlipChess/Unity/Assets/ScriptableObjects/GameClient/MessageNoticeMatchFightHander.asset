@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_userStorage: {fileID: 11400000, guid: ae10b020be61df943af9196cb82b2d62, type: 2}
   m_fightStorage: {fileID: 11400000, guid: b71282cbb87449a4b8aae9a9b0acd2a1, type: 2}
-  m_sender: {fileID: 11400000, guid: deb2ba7329c89ff48bfe2c9984ff58b6, type: 2}
+  m_timerStorage: {fileID: 11400000, guid: eea8713638bc12a4e845e7a09c6a327b, type: 2}

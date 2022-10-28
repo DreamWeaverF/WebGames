@@ -9,6 +9,8 @@ namespace GameServer
     {
         [SerializeField]
         protected UserRespository m_userRespository;
+        [SerializeField]
+        protected TimerStorage m_timerStorage;
 
         private T2 m_message;
 
@@ -36,16 +38,17 @@ namespace GameServer
             if (userId == 0)
             {
                 m_message.ErrorCode = MessageErrorCode.UserNotLogged;
-                return m_response;
+                return m_message;
             }
             if (!m_userRespository.UserDatas.TryGetValue(userId,out UserData userData))
             {
                 m_message.ErrorCode = MessageErrorCode.UserNotLogged;
-                return m_response;
+                return m_message;
             }
-            await OnMessage(userData, request as T1);
-            m_message.RpcId = request.RpcId;
             m_message.ErrorCode = MessageErrorCode.Success;
+            m_message.RpcId = request.RpcId;
+            userData.LastMessageTime = m_timerStorage.MilliSecond;
+            await OnMessage(userData, request as T1);
             return m_message;
         }
         protected virtual async Task OnMessage(UserData userData, T1 request)
@@ -53,12 +56,11 @@ namespace GameServer
             await Task.CompletedTask;
         }
     }
-
     public abstract class AMessageRequestHander : ScriptableObject
     {
         public abstract Type GetRequestType();
         public abstract Type GetResponseType();
 
-        public abstract Task<AMessageResponse> OnMessage(long userId,AMessageRequest request);
+        public abstract Task<AMessageResponse> OnMessage(long userId, AMessageRequest request);
     }
 }

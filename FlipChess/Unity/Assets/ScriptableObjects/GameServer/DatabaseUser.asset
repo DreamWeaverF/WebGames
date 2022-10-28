@@ -12,4 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9564cf8a6d9b3842a9a5c5af428ff23, type: 3}
   m_Name: DatabaseUser
   m_EditorClassIdentifier: 
-  m_connectPool: {fileID: 11400000, guid: 8f4ef91c90cd4dc4c90ed0098069f3f4, type: 2}

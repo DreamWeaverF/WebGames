@@ -9,6 +9,8 @@ namespace GameCommon
         CancelMatchFight,
         MatchFightSuccess,
         MessageNoticeSender,
+        FetchMysqlConnection,
+        RecycleMysqlConnection,
         //Client
         MessageRequestSender = 2000,
     }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: MessageRequestAdmitDefeatHander
   m_EditorClassIdentifier: 
   m_userRespository: {fileID: 11400000, guid: 2c702981dfe844c45be3f7590bcceffc, type: 2}
+  m_timerStorage: {fileID: 11400000, guid: eea8713638bc12a4e845e7a09c6a327b, type: 2}
   m_fightRespository: {fileID: 11400000, guid: eae4fcd74118363418a94b329b0a48e0, type: 2}

@@ -60,13 +60,14 @@
     <Compile Include="Assets\Scripts\Client\Message\FightChat\MessageRequestFightChatSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FlipChessMan\MessageRequestFlipChessManSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FlipChessMan\MessageNoticeFlipChessManHander.cs" />
-    <Compile Include="Assets\Scripts\Client\TestCode.cs" />
     <Compile Include="Assets\Scripts\Client\Message\Error\MessageNoticeErrorHander.cs" />
     <Compile Include="Assets\Scripts\Client\Config\ConfigClientLaunch.cs" />
+    <Compile Include="Assets\Scripts\Client\UI\AUI.cs" />
     <Compile Include="Assets\Scripts\Client\Message\MatchFight\MessageRequestMatchFightSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\Login\MessageRequestLoginSender.cs" />
     <Compile Include="Assets\Scripts\Client\Network\NetworkController.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AMessageNoticeHander.cs" />
+    <Compile Include="Assets\Scripts\Client\UI\Home\UIPageHome.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FightResult\MessageNoticeFightResultHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FightChat\MessageNoticeFightChatHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\JoinFight\MessageNoticeJoinFightHander.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\Client\User\UserStorage.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AMessageRequestSender.cs" />
     <Compile Include="Assets\Scripts\Client\Rank\RankStorage.cs" />
+    <Compile Include="Assets\Scripts\Client\UI\Loading\UIPageLoading.cs" />
     <Compile Include="Assets\Scripts\Client\Message\ActionChessMan\MessageRequestActionChessManSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AdmitDefeat\MessageRequestAdmitDefeatSender.cs" />
     <Compile Include="Assets\Scripts\Client\Fight\FightStorage.cs" />

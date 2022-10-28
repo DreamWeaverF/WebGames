@@ -2,6 +2,7 @@ using GameCommon;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace GameServer
@@ -17,12 +18,8 @@ namespace GameServer
 
         private DatabaseRankElement m_databaseRankElement = new DatabaseRankElement();
 
-        async void OnEnable()
+        public async void Init()
         {
-            if (!Application.isPlaying)
-            {
-                return;
-            }
             long rankCount = await m_databaseRank.TrySelectCount(m_rankId);
             if (rankCount == 0)
             {
@@ -37,12 +34,8 @@ namespace GameServer
                 await m_databaseRank.TrySelect(m_databaseRankElement, m_rankId);
             }
         }
-        async void OnDisable()
+        public async Task UnInit()
         {
-            if (!Application.isPlaying)
-            {
-                return;
-            }
             await m_databaseRank.TryUpdate(m_databaseRankElement);
         }
         public List<RankDataElement> RankDataElements

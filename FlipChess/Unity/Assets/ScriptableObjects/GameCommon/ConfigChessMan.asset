@@ -19,27 +19,32 @@ MonoBehaviour:
     Camp: 1
     ActionType: 1
     EatChessMans: 010000000200000003000000
+    Score: 0
   - Id: 2
     Name: "\u4ED5"
     Pic: "\u4ED5"
     Camp: 1
     ActionType: 1
     EatChessMans: 010000000200000003000000
+    Score: 0
   - Id: 3
     Name: "\u9A6C"
     Pic: "\u9A6C"
     Camp: 1
     ActionType: 2
     EatChessMans: 010000000200000003000000
+    Score: 0
   - Id: 4
     Name: "\u519B"
     Pic: "\u519B"
     Camp: 2
     ActionType: 1
     EatChessMans: 010000000200000003000000
+    Score: 0
   - Id: 5
     Name: "\u76F8"
     Pic: "\u76F8"
     Camp: 2
     ActionType: 1
     EatChessMans: 010000000200000003000000
+    Score: 0

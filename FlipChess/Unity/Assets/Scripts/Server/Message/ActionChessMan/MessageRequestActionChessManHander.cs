@@ -13,8 +13,6 @@ namespace GameServer
         private MessageNoticeActionChessManSender m_sender;
         [SerializeField]
         private ConfigChessMan m_configChessMan;
-        [SerializeField]
-        private TimerStorage m_timerStorage;
         protected override async Task OnMessage(UserData userData, MessageRequestActionChessMan request)
         {
             await Task.CompletedTask;

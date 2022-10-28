@@ -64,11 +64,11 @@
     <Compile Include="Assets\Scripts\Server\Message\ActionChessMan\MessageNoticeActionChessManSender.cs" />
     <Compile Include="Assets\Scripts\Server\Rank\RankRespository.cs" />
     <Compile Include="Assets\Scripts\Server\Message\FightChat\MessageRequestFightChatHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Rank\RankController.cs" />
     <Compile Include="Assets\Scripts\Server\Database\ADatabase.cs" />
     <Compile Include="Assets\Scripts\Server\User\UserRespository.cs" />
     <Compile Include="Assets\Scripts\Server\Message\Login\MessageRequestLoginHander.cs" />
     <Compile Include="Assets\Scripts\Server\Message\AMessageRequestHander.cs" />
-    <Compile Include="Assets\Scripts\Server\Database\DatabaseConnect.cs" />
     <Compile Include="Assets\Scripts\Server\Database\DatabaseCommandExtensions.cs" />
     <Compile Include="Assets\Scripts\Server\Config\ConfigServerLaunch.cs" />
     <Compile Include="Assets\Scripts\Server\Message\ActionChessMan\MessageRequestActionChessManHander.cs" />
@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Server\Fight\MatchFightController.cs" />
     <Compile Include="Assets\Scripts\Server\Message\FightChat\MessageNoticeFightChatSender.cs" />
     <Compile Include="Assets\Scripts\Server\Message\Error\MessageNoticeErrorSender.cs" />
+    <Compile Include="Assets\Scripts\Server\User\UserController.cs" />
     <Compile Include="Assets\Scripts\Server\Fight\FightRespository.cs" />
     <Compile Include="Assets\Scripts\Server\Message\MatchFight\MessageRequestMatchFightHander.cs" />
     <Compile Include="Assets\Scripts\Server\Fight\FightController.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\Server\Message\JoinFight\MessageRequestJoinFightHander.cs" />
     <Compile Include="Assets\Scripts\Server\Database\Account\DatabaseAccount.cs" />
     <Compile Include="Assets\Scripts\Server\Message\FlipChessMan\MessageRequestFlipChessManHander.cs" />
+    <Compile Include="Assets\Scripts\Server\Database\DatabaseController.cs" />
     <Compile Include="Assets\Scripts\Server\Message\CancelMatchFight\MessageRequestCancelMatchFightHander.cs" />
   </ItemGroup>
   <ItemGroup>

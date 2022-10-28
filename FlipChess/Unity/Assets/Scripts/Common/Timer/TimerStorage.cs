@@ -49,7 +49,7 @@ namespace GameCommon
         private readonly DateTime m_gmtDataTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local);
         private readonly long m_gmt2020Time = (new DateTime(2020, 1, 1, 0, 0, 0, DateTimeKind.Local).Ticks - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local).Ticks) / 10000;
 
-        private long OffsetTicks;
+        public long OffsetTicks;
         public long Ticks
         {
             get

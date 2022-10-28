@@ -15,7 +15,7 @@ namespace GameServer
         [SerializeField]
         private MessageRequestLoginHander m_loginHander;
         [SerializeField]
-        private SerializationDictionary<Type,AMessageRequestHander> m_requestHanders;
+        private SerializationDictionary<Type, AMessageRequestHander> m_requestHanders;
 
         private Dictionary<long, UserNetBehavior> m_userNets = new Dictionary<long, UserNetBehavior>();
         private MessageNoticeError m_noticeError = new MessageNoticeError();
@@ -37,7 +37,7 @@ namespace GameServer
             }
         }
         [SynchronizeMethod(SyncName = SyncName.MessageNoticeSender)]
-        private void OnMessageNoticeSender(List<long> userIds, bool bCloseSocket, AMessageNotice notice)
+        private void OnCallbackMessageNoticeSender(List<long> userIds, bool bCloseSocket, AMessageNotice notice)
         {
             if(userIds.Count <= 0)
             {

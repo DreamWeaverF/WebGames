@@ -15,27 +15,23 @@ namespace GameServer
         private Dictionary<string, DatabaseAccountElement> m_accountElements = new Dictionary<string, DatabaseAccountElement>();
         private readonly int m_maxCacheCount = 100;
 
-        private DatabaseAccountElement m_element;
-
-        private long m_tempUserId;
-
         public override async Task<AMessageResponse> OnMessage(long userId, AMessageRequest request)
         {
             MessageRequestLogin requestLogin = request as MessageRequestLogin;
             if (!m_accountElements.TryGetValue(requestLogin.UserName, out DatabaseAccountElement element))
             {
+                element = new DatabaseAccountElement();
                 long count = await m_databaseAccount.TrySelectCount(requestLogin.UserName);
                 if (count > 0)
                 {
-                    await m_databaseAccount.TrySelect(m_element, requestLogin.UserName);
+                    await m_databaseAccount.TrySelect(element, requestLogin.UserName);
                 }
                 else
                 {
-                    element = new DatabaseAccountElement();
                     element.UserName = requestLogin.UserName;
                     element.Password = requestLogin.Password;
-                    element.UserId = ++m_tempUserId;
-                    await m_databaseAccount.TryInsertInto(m_element);
+                    element.UserId = m_timerStorage.GenerateId();
+                    await m_databaseAccount.TryInsertInto(element);
                 }
                 m_accountElements.Add(requestLogin.UserName, element);
                 if(m_accountElements.Count > m_maxCacheCount)

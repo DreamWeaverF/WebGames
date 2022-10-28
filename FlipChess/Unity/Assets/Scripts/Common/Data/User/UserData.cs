@@ -17,7 +17,6 @@ namespace GameCommon
         public int UserWinMatch { get; set; }
         [Key(6)]
         public int UserLoseMatch { get; set; }
-
         [IgnoreMember]
         public UserState UserState { get; set; }
         [IgnoreMember]

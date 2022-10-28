@@ -383,7 +383,14 @@ MonoBehaviour:
   m_configClientLanch: {fileID: 11400000, guid: cee80354f82ed514b85c8d0d47dc56dc, type: 2}
   m_loginSender: {fileID: 11400000, guid: ee2be75b1ac37c046920d40188908aa4, type: 2}
   m_noticeHanders:
-    m_values: []
+    m_values:
+    - {fileID: 11400000, guid: fa1121e2447bde24e8cbbcbcf0d2117b, type: 2}
+    - {fileID: 11400000, guid: 1f970ca509fd97942a7ba429bb992921, type: 2}
+    - {fileID: 11400000, guid: 96eda92d19a7b754caf82a6e6367cd79, type: 2}
+    - {fileID: 11400000, guid: a236bedaa24f76c4284d90fcb958c41d, type: 2}
+    - {fileID: 11400000, guid: 3c5ddb59c988f794f955fefc965d168b, type: 2}
+    - {fileID: 11400000, guid: 9be9b2cb266119f419eab1db106cfdc9, type: 2}
+    - {fileID: 11400000, guid: 345017f570a3b0b4a909f1494c95bbbf, type: 2}
 --- !u!81 &606471344
 AudioListener:
   m_ObjectHideFlags: 0
