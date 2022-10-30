@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Common\Message\AMessageNotice.cs" />
     <Compile Include="Assets\Scripts\Common\Message\AdmitDefeat\MessageRequestAdmitDefeat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FightChat\MessageResponseFightChat.cs" />
+    <Compile Include="Assets\Scripts\Common\Launch\LaunchController.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CancelMatchFight\MessageRequestCancelMatchFight.cs" />
     <Compile Include="Assets\Scripts\Common\Message\RankData\MessageRequestRankData.cs" />
     <Compile Include="Assets\Scripts\Common\Message\JoinFight\MessageRequestJoinFight.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Assets\Scripts\Common\Component\Vector3I.cs" />
     <Compile Include="Assets\Scripts\Common\Config\ChessMan\ConfigChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CommonError\MessageNoticeError.cs" />
+    <Compile Include="Assets\Scripts\Common\Launch\LaunchSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Common\GameCommon.asmdef" />
@@ -371,9 +373,6 @@
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Assets\Plugins\System.Runtime.CompilerServices.Unsafe.dll</HintPath>

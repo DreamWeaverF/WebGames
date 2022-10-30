@@ -1,3 +1,4 @@
+using GameCommon;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 namespace GameLaunch
 {
-    public class Launch : MonoBehaviour
+    public class LaunchController : MonoBehaviour
     {
+        [SerializeField]
+        public LaunchSettings m_launchSettings;
+
         private readonly string m_loadingSceneName = "Loading";
         private readonly string m_serverSceneName = "Server";
 

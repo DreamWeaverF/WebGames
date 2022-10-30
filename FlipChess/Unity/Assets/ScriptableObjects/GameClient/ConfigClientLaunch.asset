@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_datas:
   - Id: 1
+    LaunchType: 1
     ServerAddress: ws://127.0.0.1:50001/connect
   - Id: 2
+    LaunchType: 2
     ServerAddress: ws://127.0.0.1:50001/connect
   - Id: 3
+    LaunchType: 3
     ServerAddress: ws://127.0.0.1:50001/connect
   - Id: 4
+    LaunchType: 4
     ServerAddress: ws://127.0.0.1:50001/connect
-  - Id: 5
-    ServerAddress: ws://127.0.0.1:50001/connect
-  m_launchType: 1
+  m_launchSettings: {fileID: 11400000, guid: 810061be91c6df1418cfb32124e6a389, type: 2}

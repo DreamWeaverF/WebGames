@@ -1,7 +1,6 @@
-备注,Id,ListenerPort,MySqlHost,MySqlPort,MySqlUserId,MySqlPassword,MySqlSchemaName,MySqlCharacter
-,平台ID,端口,MySqlHost,端口,用户ID,数据库密码,DataBase,格式
-LOCAl,1,50001,192.168.182.129,3306,root,900824,FlipChess,utf8
-DEV,2,50001,192.168.182.129,3306,root,900824,FlipChess,utf8
-QA,3,50001,localhost,3306,root,120120@fiture,FlipChess,utf8
-PROD,4,50001,rm-2ze3w3nv1y9yw8d1q.mysql.rds.aliyuncs.com,3306,gameskywalking_w,ojbUpmo933rpTtOp,FlipChess,utf8
-PROD_B,5,50001,rm-2ze3w3nv1y9yw8d1q.mysql.rds.aliyuncs.com,3306,gameskywalking_w,ojbUpmo933rpTtOp,FlipChess,utf8
+Id,LaunchType,ListenerPort,MySqlHost,MySqlPort,MySqlUserId,MySqlPassword,MySqlSchemaName,MySqlCharacter
+平台ID,平台,端口,MySqlHost,端口,用户ID,数据库密码,DataBase,格式
+1,Local,50001,192.168.182.129,3306,root,900824,FlipChess,utf8
+2,Dev,50001,192.168.182.129,3306,root,900824,FlipChess,utf8
+3,QA,50001,localhost,3306,root,120120@fiture,FlipChess,utf8
+4,Prod,50001,rm-2ze3w3nv1y9yw8d1q.mysql.rds.aliyuncs.com,3306,gameskywalking_w,ojbUpmo933rpTtOp,FlipChess,utf8

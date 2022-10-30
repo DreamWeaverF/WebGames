@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Editor\Config\GenerateConfigTool.cs" />
     <Compile Include="Assets\Scripts\Editor\UI\AUIEditor.cs" />
     <Compile Include="Assets\Scripts\Editor\Auto\GenerateAutoTool.cs" />
+    <Compile Include="Assets\Scripts\Editor\LaunchController\LaunchControllerEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Editor\GameEditor.asmdef" />
@@ -320,9 +321,6 @@
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Assets\Plugins\System.Runtime.CompilerServices.Unsafe.dll</HintPath>

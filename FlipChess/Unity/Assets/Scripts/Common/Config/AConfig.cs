@@ -1,8 +1,5 @@
-using MessagePack;
 using System.Collections.Generic;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace GameCommon
 {
@@ -17,7 +14,7 @@ namespace GameCommon
         [SerializeField]
         protected List<T1> m_datas = new List<T1>();
         [System.NonSerialized]
-        private Dictionary<int, T1> m_elements = new Dictionary<int, T1>();
+        private Dictionary<int, T1> m_keyValuePairs = new Dictionary<int, T1>();
         public void OnAfterDeserialize()
         {
             InitElementData();
@@ -27,7 +24,7 @@ namespace GameCommon
         }
         protected virtual void InitElementData()
         {
-            m_elements.Clear();
+            m_keyValuePairs.Clear();
             for (int index = 0; index < m_datas.Count; index++)
             {
                 T1 element = m_datas[index];
@@ -35,12 +32,12 @@ namespace GameCommon
                 {
                     continue;
                 }
-                m_elements.Add(element.Id, element);
+                m_keyValuePairs.Add(element.Id, element);
             }
         }
         public bool TryGetValue(int id,out T1 value)
         {
-            return m_elements.TryGetValue(id, out value);
+            return m_keyValuePairs.TryGetValue(id, out value);
         }
     }
 }

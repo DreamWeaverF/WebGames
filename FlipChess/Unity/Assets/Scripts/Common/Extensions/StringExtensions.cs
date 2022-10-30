@@ -32,9 +32,17 @@ namespace GameCommon
                     return default(T);
                 }
                 object result;
+                
+                Debug.Log($"{typeof(T).Name}");
                 switch (typeof(T).Name)
                 {
-                    case "string":
+                    case "Int32":
+                        result = int.Parse(str);
+                        break;
+                    case "Int64":
+                        result = long.Parse(str);
+                        break;
+                    case "String":
                         result = str;
                         break;
                     case "Vector2I":
@@ -56,8 +64,7 @@ namespace GameCommon
                         }
                         break;
                     default:
-                        TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
-                        result = converter.ConvertFromString(str);
+                        result = Enum.Parse(typeof(T), str);
                         break;
                 }
                 return (T)result;
