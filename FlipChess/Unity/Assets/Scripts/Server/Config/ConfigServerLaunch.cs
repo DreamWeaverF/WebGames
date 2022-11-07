@@ -8,7 +8,7 @@ namespace GameServer
     [Serializable]
     public class ConfigServerLaunchElement : AConfigElement
     {
-        public LaunchType LaunchType;
+        public LaunchPlatform LaunchPlatform;
         public int ListenerPort;
         public string MySqlHost;
         public int MySqlPort;
@@ -23,12 +23,12 @@ namespace GameServer
         [SerializeField]
         protected LaunchSettings m_launchSettings;
 
-        private Dictionary<LaunchType, ConfigServerLaunchElement> m_keyValuePairs = new Dictionary<LaunchType, ConfigServerLaunchElement>();
+        private Dictionary<LaunchPlatform, ConfigServerLaunchElement> m_keyValuePairs = new Dictionary<LaunchPlatform, ConfigServerLaunchElement>();
         public string MysqlConnection
         {
             get
             {
-                if(!TryGetValue(m_launchSettings.LaunchType, out ConfigServerLaunchElement element))
+                if(!TryGetValue(m_launchSettings.LaunchPlatform, out ConfigServerLaunchElement element))
                 {
                     return "";
                 }
@@ -41,7 +41,7 @@ namespace GameServer
         {
             get
             {
-                if (!TryGetValue(m_launchSettings.LaunchType, out ConfigServerLaunchElement element))
+                if (!TryGetValue(m_launchSettings.LaunchPlatform, out ConfigServerLaunchElement element))
                 {
                     return 0;
                 }
@@ -58,12 +58,12 @@ namespace GameServer
                 {
                     continue;
                 }
-                m_keyValuePairs.Add(element.LaunchType, element);
+                m_keyValuePairs.Add(element.LaunchPlatform, element);
             }
         }
-        public bool TryGetValue(LaunchType type, out ConfigServerLaunchElement value)
+        private bool TryGetValue(LaunchPlatform platform, out ConfigServerLaunchElement value)
         {
-            return m_keyValuePairs.TryGetValue(type, out value);
+            return m_keyValuePairs.TryGetValue(platform, out value);
         }
     }
 }

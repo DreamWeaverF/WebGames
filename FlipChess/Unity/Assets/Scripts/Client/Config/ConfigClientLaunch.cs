@@ -9,7 +9,7 @@ namespace GameClient
     [Serializable]
     public class ConfigClientLaunchElement : AConfigElement
     {
-        public LaunchType LaunchType;
+        public LaunchPlatform LaunchPlatform;
         public string ServerAddress;
     }
     [GenerateAutoClass]
@@ -18,12 +18,12 @@ namespace GameClient
         [SerializeField]
         protected LaunchSettings m_launchSettings;
 
-        private Dictionary<LaunchType,ConfigClientLaunchElement> m_keyValuePairs = new Dictionary<LaunchType,ConfigClientLaunchElement>();
+        private Dictionary<LaunchPlatform,ConfigClientLaunchElement> m_keyValuePairs = new Dictionary<LaunchPlatform,ConfigClientLaunchElement>();
         public string ServerAddress
         {
             get 
             {
-                if (!TryGetValue(m_launchSettings.LaunchType, out ConfigClientLaunchElement element))
+                if (!TryGetValue(m_launchSettings.LaunchPlatform, out ConfigClientLaunchElement element))
                 {
                     return "";
                 }
@@ -40,12 +40,12 @@ namespace GameClient
                 {
                     continue;
                 }
-                m_keyValuePairs.Add(element.LaunchType, element);
+                m_keyValuePairs.Add(element.LaunchPlatform, element);
             }
         }
-        public bool TryGetValue(LaunchType type, out ConfigClientLaunchElement value)
+        private bool TryGetValue(LaunchPlatform platform, out ConfigClientLaunchElement value)
         {
-            return m_keyValuePairs.TryGetValue(type, out value);
+            return m_keyValuePairs.TryGetValue(platform, out value);
         }
     }
 }

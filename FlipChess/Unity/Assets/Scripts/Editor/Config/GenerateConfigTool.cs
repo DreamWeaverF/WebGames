@@ -1,14 +1,14 @@
 using GameCommon;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
+using ExcelDataReader;
+using System.Data;
 
 namespace GameEditor
 {
@@ -37,35 +37,54 @@ namespace GameEditor
                     {
                         continue;
                     }
-                    FileInfo[] fileInfos = dirInfo.GetFiles($"{types[i1].Name}.csv");
+                    FileInfo[] fileInfos = dirInfo.GetFiles($"{types[i1].Name}.xlsx");
                     if(fileInfos.Length <= 0)
                     {
                         Debug.LogError($"找不到对应配置{types[i1].Name}");
                         continue;
                     }
-                    string genPath = $"Assets/ScriptableObjects/{dllName}/{types[i1].Name}.asset";
-                    FileStream fs = new FileStream(fileInfos[0].FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                    using (StreamReader streamReader = new StreamReader(fs, Encoding.GetEncoding("gb2312")))
+                    using (FileStream stream = File.Open(fileInfos[0].FullName, FileMode.Open, FileAccess.Read))
                     {
-                        object result = LoadObject(streamReader, asm, $"{types[i1]}");
-                        FieldInfo filed = types[i1].GetField("m_datas", BindingFlags.Instance | BindingFlags.NonPublic);
-                        ScriptableObject obj = AssetDatabase.LoadAssetAtPath<ScriptableObject>(genPath);
-                        if (obj == null)
+                        using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
                         {
-                            obj = ScriptableObject.CreateInstance(types[i1]);
-                            AssetDatabase.CreateAsset(obj, genPath);
+                            DataSet _dataSet = reader.AsDataSet();
+                            object result = LoadObject(_dataSet.Tables[0], asm, $"{types[i1]}");
+                            FieldInfo filed = types[i1].GetField("m_datas", BindingFlags.Instance | BindingFlags.NonPublic);
+                            string genPath = $"Assets/ScriptableObjects/{dllName}/{types[i1].Name}.asset";
+                            ScriptableObject obj = AssetDatabase.LoadAssetAtPath<ScriptableObject>(genPath);
+                            if (obj == null)
+                            {
+                                obj = ScriptableObject.CreateInstance(types[i1]);
+                                AssetDatabase.CreateAsset(obj, genPath);
+                            }
+                            filed.SetValue(obj, result);
+                            EditorUtility.SetDirty(obj);
+                            AssetDatabase.SaveAssets();
                         }
-                        filed.SetValue(obj, result);
-                        EditorUtility.SetDirty(obj);
-                        AssetDatabase.SaveAssets();
                     }
+                    //string genPath = $"Assets/ScriptableObjects/{dllName}/{types[i1].Name}.asset";
+                    //FileStream fs = new FileStream(fileInfos[0].FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                    //using (StreamReader streamReader = new StreamReader(fs, Encoding.GetEncoding("gb2312")))
+                    //{
+                    //    object result = LoadObject(streamReader, asm, $"{types[i1]}");
+                    //    FieldInfo filed = types[i1].GetField("m_datas", BindingFlags.Instance | BindingFlags.NonPublic);
+                    //    ScriptableObject obj = AssetDatabase.LoadAssetAtPath<ScriptableObject>(genPath);
+                    //    if (obj == null)
+                    //    {
+                    //        obj = ScriptableObject.CreateInstance(types[i1]);
+                    //        AssetDatabase.CreateAsset(obj, genPath);
+                    //    }
+                    //    filed.SetValue(obj, result);
+                    //    EditorUtility.SetDirty(obj);
+                    //    AssetDatabase.SaveAssets();
+                    //}
                 }
             }
             AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();
         }
 
-        private static object LoadObject(TextReader tReader, Assembly asm, string className)
+        private static object LoadObject(DataTable dataTable, Assembly asm, string className)
         {
             string elementName = $"{className}Element";
             Type elementType = asm.GetType(elementName);
@@ -74,37 +93,20 @@ namespace GameEditor
             Type listRef = typeof(List<>);
             Type[] listParam = { elementType };
             object result = Activator.CreateInstance(listRef.MakeGenericType(listParam));
-            string line;
-            int lineNum = 0;
-            string[] elementDataTypes = null;
-            while ((line = tReader.ReadLine()) != null)
+            if (dataTable.Rows.Count < 3)
             {
-                if (line.StartsWith("#"))
-                    continue;
-                ++lineNum;
-                if (lineNum == 1)
-                {
-                    elementDataTypes = EnumerateCsvLine(line).ToArray();
-                    continue;
-                }
-                //描述信息
-                else if (lineNum == 2)
-                {
-                    continue;
-                }
-                string[] vals = EnumerateCsvLine(line).ToArray();
-                if (vals.Length < 2)
-                {
-                    Debug.LogWarning(string.Format("CsvUtil: ignoring line '{0}': not enough fields", line));
-                    continue;
-                }
+                return result;
+            }
+            object[] elementDataTypes = dataTable.Rows[0].ItemArray;
+            for (int i = 2; i < dataTable.Rows.Count; i++)
+            {
                 object valuelineObj = asm.CreateInstance(elementName);
                 foreach (FieldInfo field in fields)
                 {
-                    for (int i = 0; i < elementDataTypes.Length; ++i)
+                    for (int i1 = 0; i1 < elementDataTypes.Length; i1++)
                     {
-                        string val = vals[i];
-                        string typeName = elementDataTypes[i];
+                        string val = dataTable.Rows[i][i1].ToString();
+                        string typeName = elementDataTypes[i1].ToString();
                         if (string.Compare(typeName, field.Name, true) == 0)
                         {
                             SetField(val, field, valuelineObj);
@@ -135,16 +137,6 @@ namespace GameEditor
                 typedVal = strValue.Convert(field.FieldType);
             }
             field.SetValue(destObject, typedVal);
-        }
-        private static IEnumerable<string> EnumerateCsvLine(string line)
-        {
-            // Regex taken from http://wiki.unity3d.com/index.php?title=CSVReader
-            foreach (Match m in Regex.Matches(line,
-                @"(((?<x>(?=[,\r\n]+))|""(?<x>([^""]|"""")+)""|(?<x>[^,\r\n]+)),?)",
-                RegexOptions.ExplicitCapture))
-            {
-                yield return m.Groups[1].Value;
-            }
         }
     }
 }

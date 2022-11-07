@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_datas:
   - Id: 1
-    LaunchType: 1
+    LaunchPlatform: 1
     ListenerPort: 50001
-    MySqlHost: 192.168.182.129
+    MySqlHost: 192.168.182.130
     MySqlPort: 3306
     MySqlUserId: root
     MySqlPassword: 900824
     MySqlSchemaName: FlipChess
     MySqlCharacter: utf8
   - Id: 2
-    LaunchType: 2
+    LaunchPlatform: 2
     ListenerPort: 50001
-    MySqlHost: 192.168.182.129
+    MySqlHost: 192.168.182.130
     MySqlPort: 3306
     MySqlUserId: root
     MySqlPassword: 900824
     MySqlSchemaName: FlipChess
     MySqlCharacter: utf8
   - Id: 3
-    LaunchType: 3
+    LaunchPlatform: 3
     ListenerPort: 50001
     MySqlHost: localhost
     MySqlPort: 3306
@@ -41,7 +41,7 @@ MonoBehaviour:
     MySqlSchemaName: FlipChess
     MySqlCharacter: utf8
   - Id: 4
-    LaunchType: 4
+    LaunchPlatform: 4
     ListenerPort: 50001
     MySqlHost: rm-2ze3w3nv1y9yw8d1q.mysql.rds.aliyuncs.com
     MySqlPort: 3306

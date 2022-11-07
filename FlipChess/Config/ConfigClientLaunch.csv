@@ -1,6 +1,0 @@
-Id,LaunchType,ServerAddress
-平台ID,平台,地址
-1,Local,ws://127.0.0.1:50001/connect
-2,Dev,ws://127.0.0.1:50001/connect
-3,QA,ws://127.0.0.1:50001/connect
-4,Prod,ws://127.0.0.1:50001/connect

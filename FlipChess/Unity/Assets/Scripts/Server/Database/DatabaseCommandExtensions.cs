@@ -10,25 +10,25 @@ namespace GameServer
     {
         private static MySqlDbType CoverTypeToDbType<T1>(T1 value1)
         {
-            MySqlDbType _dbType;
+            MySqlDbType dbType;
             switch (value1.GetType().Name)
             {
                 case "String":
-                    _dbType = MySqlDbType.VarChar;
+                    dbType = MySqlDbType.VarChar;
                     break;
                 case "Int32":
-                    _dbType = MySqlDbType.Int32;
+                    dbType = MySqlDbType.Int32;
                     break;
                 case "Int64":
-                    _dbType = MySqlDbType.Int64;
+                    dbType = MySqlDbType.Int64;
                     break;
                 case "Byte[]":
-                    _dbType = MySqlDbType.Blob;
+                    dbType = MySqlDbType.Blob;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            return _dbType;
+            return dbType;
         }
         public static void SelectTableCountCmd(this MySqlCommand cmd, string tableName)
         {

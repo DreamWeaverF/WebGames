@@ -7,6 +7,6 @@ namespace GameCommon
     [GenerateAutoClass]
     public class LaunchSettings : ScriptableObject
     {
-        public LaunchType LaunchType;
+        public LaunchPlatform LaunchPlatform;
     }
 }

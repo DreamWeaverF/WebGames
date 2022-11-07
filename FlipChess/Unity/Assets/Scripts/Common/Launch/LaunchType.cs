@@ -7,9 +7,8 @@ namespace GameCommon
     public enum LaunchType
     {
         None,
-        Local = 1,
-        Dev = 2,
-        QA = 3,
-        Prod = 4,
+        Dev,
+        Client,
+        Server,
     }
 }

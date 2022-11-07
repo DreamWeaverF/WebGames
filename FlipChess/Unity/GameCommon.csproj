@@ -74,11 +74,13 @@
     <Compile Include="Assets\Scripts\Common\Message\ActionChessMan\MessageResponseActionChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageResponseFlipChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\SyncEvent\SyncHelper.cs" />
+    <Compile Include="Assets\Scripts\Common\Launch\LaunchSettings.cs" />
     <Compile Include="Assets\Scripts\Common\Timer\TimerStorage.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FightChat\MessageNoticeFightChat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\UserData\MessageResponseUserData.cs" />
     <Compile Include="Assets\Scripts\Common\Component\SerializationDictionary.cs" />
     <Compile Include="Assets\Scripts\Common\Config\AConfig.cs" />
+    <Compile Include="Assets\Scripts\Common\Launch\LaunchType.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FlipChessMan\MessageNoticeFlipChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\FightChat\MessageRequestFightChat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CancelMatchFight\MessageResponseCancelMatchFight.cs" />
@@ -105,15 +107,14 @@
     <Compile Include="Assets\Scripts\Common\Message\JoinFight\MessageRequestJoinFight.cs" />
     <Compile Include="Assets\Scripts\Common\Component\Vector2I.cs" />
     <Compile Include="Assets\Scripts\Common\Data\User\EnumUser.cs" />
-    <Compile Include="Assets\Scripts\Common\Launch\LaunchType.cs" />
+    <Compile Include="Assets\Scripts\Common\Launch\LaunchPlatform.cs" />
     <Compile Include="Assets\Scripts\Common\Message\MessageRequestSenderHelper.cs" />
-    <Compile Include="Assets\Scripts\Common\Message\AdmitDefeat\MessageResponseAdmitDefeat.cs" />
     <Compile Include="Assets\Scripts\Common\Message\Login\MessageResponseLogin.cs" />
+    <Compile Include="Assets\Scripts\Common\Message\AdmitDefeat\MessageResponseAdmitDefeat.cs" />
     <Compile Include="Assets\Scripts\Common\Data\Fight\FightData.cs" />
     <Compile Include="Assets\Scripts\Common\Component\Vector3I.cs" />
     <Compile Include="Assets\Scripts\Common\Config\ChessMan\ConfigChessMan.cs" />
     <Compile Include="Assets\Scripts\Common\Message\CommonError\MessageNoticeError.cs" />
-    <Compile Include="Assets\Scripts\Common\Launch\LaunchSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Common\GameCommon.asmdef" />
@@ -374,6 +375,9 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Assets\Plugins\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -424,6 +428,12 @@
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
@@ -799,6 +809,12 @@
     </Reference>
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>

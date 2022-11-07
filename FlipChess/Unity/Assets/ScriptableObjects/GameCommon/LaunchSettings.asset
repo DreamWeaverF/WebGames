@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfef00b12fa29c4a872cec06d37afd5, type: 3}
   m_Name: LaunchSettings
   m_EditorClassIdentifier: 
-  LaunchType: 1
+  LaunchPlatform: 1

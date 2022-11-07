@@ -19,10 +19,11 @@ namespace GameServer
         private List<ETTask<MySqlConnection>> m_reqConnectTasks = new List<ETTask<MySqlConnection>>();
         protected override void OnInit()
         {
+            string connectionInfo = m_configServerLaunch.MysqlConnection;
             m_connections = new Queue<MySqlConnection>();
             for (int i = 0; i < m_maxConnectCount; i++)
             {
-                MySqlConnection connection = new MySqlConnection(m_configServerLaunch.MysqlConnection);
+                MySqlConnection connection = new MySqlConnection(connectionInfo);
                 m_connections.Enqueue(connection);
             }
             for(int i = 0; i < m_databases.Count; i++)
@@ -47,7 +48,10 @@ namespace GameServer
             {
                 return;
             }
-            m_reqConnectTasks[0].SetResult(m_connections.Dequeue());
+            MySqlConnection connection = m_connections.Dequeue();
+            connection.Open();
+            m_reqConnectTasks[0].SetResult(connection);
+            m_reqConnectTasks.RemoveAt(0);
         }
         [SynchronizeMethod(SyncName = SyncName.FetchMysqlConnection)]
         private ETTask<MySqlConnection> OnCallbackFetchMysqlConnection()

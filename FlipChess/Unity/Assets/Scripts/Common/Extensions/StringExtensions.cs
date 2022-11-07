@@ -32,8 +32,6 @@ namespace GameCommon
                     return default(T);
                 }
                 object result;
-                
-                Debug.Log($"{typeof(T).Name}");
                 switch (typeof(T).Name)
                 {
                     case "Int32":

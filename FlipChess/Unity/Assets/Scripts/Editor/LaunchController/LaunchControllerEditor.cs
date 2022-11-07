@@ -17,6 +17,9 @@ namespace GameEditor
             {
                 CreateEditor((LaunchSettings)settings.objectReferenceValue).OnInspectorGUI();
             }
+            SerializedProperty launchType = serializedObject.FindProperty("m_launchType");
+            EditorGUILayout.PropertyField(launchType, false);
+            
             serializedObject.ApplyModifiedProperties();
         }
     }
