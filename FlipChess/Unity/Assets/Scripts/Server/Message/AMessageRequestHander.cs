@@ -35,6 +35,7 @@ namespace GameServer
         }
         public override async Task<AMessageResponse> OnMessage(long userId,AMessageRequest request)
         {
+            m_response.ErrorCode = MessageErrorCode.Success;
             if (userId == 0)
             {
                 m_message.ErrorCode = MessageErrorCode.UserNotLogged;
@@ -45,7 +46,6 @@ namespace GameServer
                 m_message.ErrorCode = MessageErrorCode.UserNotLogged;
                 return m_message;
             }
-            m_message.ErrorCode = MessageErrorCode.Success;
             m_message.RpcId = request.RpcId;
             userData.LastMessageTime = m_timerStorage.MilliSecond;
             await OnMessage(userData, request as T1);

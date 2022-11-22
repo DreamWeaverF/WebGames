@@ -15,9 +15,17 @@ namespace GameServer
         private Dictionary<string, DatabaseAccountElement> m_accountElements = new Dictionary<string, DatabaseAccountElement>();
         private readonly int m_maxCacheCount = 100;
 
+        private List<string> m_loginAccounts = new List<string>();
+
         public override async Task<AMessageResponse> OnMessage(long userId, AMessageRequest request)
         {
             MessageRequestLogin requestLogin = request as MessageRequestLogin;
+            if (m_loginAccounts.Contains(requestLogin.UserName))
+            {
+                m_response.ErrorCode = MessageErrorCode.RepeatLogin;
+                return m_response;
+            }
+            m_loginAccounts.Add(requestLogin.UserName);
             if (!m_accountElements.TryGetValue(requestLogin.UserName, out DatabaseAccountElement element))
             {
                 element = new DatabaseAccountElement();
@@ -43,9 +51,12 @@ namespace GameServer
             if (requestLogin.Password != element.Password)
             {
                 m_response.ErrorCode = MessageErrorCode.PasswordError;
-                return m_response;
             }
-            m_response.UserId = userId;
+            else
+            {
+                m_response.UserId = element.UserId;
+            }
+            m_loginAccounts.Remove(requestLogin.UserName);
             return m_response;
         }
     }

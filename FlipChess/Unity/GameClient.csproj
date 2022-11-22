@@ -59,30 +59,36 @@
     <Compile Include="Assets\Scripts\Client\Message\JoinFight\MessageRequestJoinFightSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FightChat\MessageRequestFightChatSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FlipChessMan\MessageRequestFlipChessManSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Addressables\SpritePool.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FlipChessMan\MessageNoticeFlipChessManHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\Error\MessageNoticeErrorHander.cs" />
     <Compile Include="Assets\Scripts\Client\Config\ConfigClientLaunch.cs" />
     <Compile Include="Assets\Scripts\Client\UI\AUI.cs" />
+    <Compile Include="Assets\Scripts\Client\Component\FImage.cs" />
     <Compile Include="Assets\Scripts\Client\Message\MatchFight\MessageRequestMatchFightSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\Login\MessageRequestLoginSender.cs" />
     <Compile Include="Assets\Scripts\Client\Network\NetworkController.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AMessageNoticeHander.cs" />
     <Compile Include="Assets\Scripts\Client\UI\Home\UIPageHome.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FightResult\MessageNoticeFightResultHander.cs" />
+    <Compile Include="Assets\Scripts\Client\Component\FText.cs" />
     <Compile Include="Assets\Scripts\Client\Message\FightChat\MessageNoticeFightChatHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\JoinFight\MessageNoticeJoinFightHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\MatchFight\MessageNoticeMatchFightHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\CancelMatchFight\MessageRequestCancelMatchFightSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\ActionChessMan\MessageNoticeActionChessManHander.cs" />
     <Compile Include="Assets\Scripts\Client\Message\UserData\MessageRequestUserDataSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Component\FRawImage.cs" />
     <Compile Include="Assets\Scripts\Client\User\UserStorage.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AMessageRequestSender.cs" />
     <Compile Include="Assets\Scripts\Client\Rank\RankStorage.cs" />
     <Compile Include="Assets\Scripts\Client\UI\Loading\UIPageLoading.cs" />
+    <Compile Include="Assets\Scripts\Client\Addressables\GameObjectPool.cs" />
     <Compile Include="Assets\Scripts\Client\Message\ActionChessMan\MessageRequestActionChessManSender.cs" />
     <Compile Include="Assets\Scripts\Client\Message\AdmitDefeat\MessageRequestAdmitDefeatSender.cs" />
     <Compile Include="Assets\Scripts\Client\Fight\FightStorage.cs" />
     <Compile Include="Assets\Scripts\Client\Message\RankData\MessageRequestRankDataSender.cs" />
+    <Compile Include="Assets\Scripts\Client\Component\FButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Client\GameClient.asmdef" />
@@ -361,6 +367,9 @@
     <Reference Include="Unity.Burst.Unsafe">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
@@ -391,17 +400,14 @@
     <Reference Include="MySql.Data">
       <HintPath>Assets\Plugins\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-    </Reference>
-    <Reference Include="ExcelDataReader">
-      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
-    </Reference>
-    <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
@@ -778,6 +784,12 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.11f1c2\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
@@ -801,6 +813,14 @@
     <ProjectReference Include="GameCommon.csproj">
       <Project>{469CB5C6-FE28-CB30-5A39-DC9C4F18255D}</Project>
       <Name>GameCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.csproj">
+      <Project>{2AD2B5BA-8385-7D2C-88ED-C468EC0E7027}</Project>
+      <Name>UniTask</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.Addressables.csproj">
+      <Project>{B38E85B8-0135-13D7-3EB5-0C32E8DD6D32}</Project>
+      <Name>UniTask.Addressables</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,7 +23,7 @@ namespace GameEditor
             EditorGUILayout.BeginHorizontal();
 
             GUI.backgroundColor = Color.green;
-            if (GUILayout.Button("Bind Message"))
+            if (GUILayout.Button("Auto Bind"))
             {
                 FieldInfo[] fields = m_target.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
                 FieldInfo field;

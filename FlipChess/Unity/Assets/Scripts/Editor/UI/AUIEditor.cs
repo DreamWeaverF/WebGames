@@ -21,60 +21,83 @@ namespace GameEditor
             EditorGUILayout.BeginHorizontal();
 
             GUI.backgroundColor = Color.green;
-            if (GUILayout.Button("Bind Message"))
+            if (GUILayout.Button("Auto Bind"))
             {
                 FieldInfo[] fields = m_target.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
                 FieldInfo field;
                 for (int i = 0; i < fields.Length; i++)
                 {
                     field = fields[i];
-                    if (field.FieldType == typeof(SerializationDictionary<Type, AMessageNoticeHander>))
+                    if (field.GetCustomAttribute<SerializeField>() == null)
                     {
-                        List<AMessageNoticeHander> values = new List<AMessageNoticeHander>();
-                        Assembly asm = Assembly.LoadFile($"{Application.dataPath} + /../Library/ScriptAssemblies/GameClient.dll");
-                        Type[] types = asm.GetTypes();
-                        List<Type> keys = new List<Type>();
-                        for (int i1 = 0; i1 < types.Length; i1++)
-                        {
-                            if (types[i1].BaseType.BaseType != typeof(AMessageNoticeHander))
-                            {
-                                continue;
-                            }
-                            string soPath = $"Assets/ScriptableObjects/GameClient/{types[i1].Name}.asset";
-                            ScriptableObject so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(soPath);
-                            if (so == null)
-                            {
-                                continue;
-                            }
-                            keys.Add(types[i1]);
-                            values.Add(so as AMessageNoticeHander);
-                        }
-                        //SerializationDictionary<Type, AMessageNoticeHander> handers = new SerializationDictionary<Type, AMessageNoticeHander>(keys, values);
-                        //field.SetValue(m_target, handers);
+                        continue;
                     }
-                    else if (field.FieldType == typeof(SerializationDictionary<Type, AMessageRequestHander>))
+                    if (field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(SerializationDictionary<,>))
                     {
-                        List<AMessageRequestHander> values = new List<AMessageRequestHander>();
-                        Assembly asm = Assembly.LoadFile($"{Application.dataPath} + /../Library/ScriptAssemblies/GameServer.dll");
-                        Type[] types = asm.GetTypes();
                         List<Type> keys = new List<Type>();
+                        Type listRef = typeof(List<>);
+                        Type valueType = field.FieldType.GenericTypeArguments[1];
+                        Type[] listParam = { valueType };
+                        object values = Activator.CreateInstance(listRef.MakeGenericType(listParam));
+                        Assembly asm = Assembly.LoadFile($"{Application.dataPath} + /../Library/ScriptAssemblies/{valueType.Namespace}.dll");
+                        Type[] types = asm.GetTypes();
                         for (int i1 = 0; i1 < types.Length; i1++)
                         {
-                            if (types[i1].BaseType.BaseType != typeof(AMessageRequestHander))
+                            if (types[i1].BaseType == null)
                             {
                                 continue;
                             }
-                            string soPath = $"Assets/ScriptableObjects/GameServer/{types[i1].Name}.asset";
+                            if (types[i1].BaseType.BaseType == null)
+                            {
+                                continue;
+                            }
+                            if (types[i1].BaseType.BaseType != valueType)
+                            {
+                                continue;
+                            }
+                            string soPath = $"Assets/ScriptableObjects/{valueType.Namespace}/{types[i1].Name}.asset";
                             ScriptableObject so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(soPath);
                             if (so == null)
                             {
                                 continue;
                             }
                             keys.Add(types[i1]);
-                            values.Add(so as AMessageRequestHander);
+                            values.GetType().GetMethod("Add").Invoke(values, new[] { so });
                         }
-                        //SerializationDictionary<Type, AMessageRequestHander> handers = new SerializationDictionary<Type, AMessageRequestHander>(keys, values);
-                        //field.SetValue(m_target, handers);
+                        object dictVal = Activator.CreateInstance(field.FieldType, new object[] { keys, values });
+                        field.SetValue(m_target, dictVal);
+                    }
+                    else if (field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>))
+                    {
+                        Type listRef = typeof(List<>);
+                        Type valueType = field.FieldType.GenericTypeArguments[0];
+                        Type[] listParam = { valueType };
+                        object values = Activator.CreateInstance(listRef.MakeGenericType(listParam));
+                        Assembly asm = Assembly.LoadFile($"{Application.dataPath} + /../Library/ScriptAssemblies/{valueType.Namespace}.dll");
+                        Type[] types = asm.GetTypes();
+                        for (int i1 = 0; i1 < types.Length; i1++)
+                        {
+                            if (types[i1].BaseType == null)
+                            {
+                                continue;
+                            }
+                            if (types[i1].BaseType.BaseType == null)
+                            {
+                                continue;
+                            }
+                            if (types[i1].BaseType.BaseType != valueType)
+                            {
+                                continue;
+                            }
+                            string soPath = $"Assets/ScriptableObjects/{valueType.Namespace}/{types[i1].Name}.asset";
+                            ScriptableObject so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(soPath);
+                            if (so == null)
+                            {
+                                continue;
+                            }
+                            values.GetType().GetMethod("Add").Invoke(values, new[] { so });
+                        }
+                        field.SetValue(m_target, values);
                     }
                     else
                     {

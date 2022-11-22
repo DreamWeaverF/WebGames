@@ -9,6 +9,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Threading.Tasks;
+using UnityEditor.MemoryProfiler;
 using UnityEngine;
 
 namespace GameServer
@@ -43,9 +44,9 @@ namespace GameServer
         }
         public async Task<long> TrySelectTableCount()
         {
+            MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
             try
             {
-                MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
                 MySqlCommand cmd = connection.CreateCommand();
                 cmd.CommandTimeout = 60;
                 cmd.SelectTableCountCmd(m_tableName);
@@ -62,14 +63,15 @@ namespace GameServer
             catch (Exception e)
             {
                 Debug.LogError(e.ToString());
+                SyncName.RecycleMysqlConnection.BroadcastSyncEvent(connection);
                 return 0;
             }
         }
         public async Task<long> TrySelectCount(TKey keyValue)
         {
+            MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
             try
             {
-                MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
                 MySqlCommand cmd = connection.CreateCommand();
                 cmd.CommandTimeout = 60;
                 cmd.SelectCountCmd(m_tableName, keyValue, m_fields[0].Name);
@@ -86,14 +88,15 @@ namespace GameServer
             catch (Exception e)
             {
                 Debug.LogError(e.ToString());
+                SyncName.RecycleMysqlConnection.BroadcastSyncEvent(connection);
                 return 0;
             }
         }
         public async Task<bool> TrySelect(TElement element, TKey keyValue)
         {
+            MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
             try
             {
-                MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
                 MySqlCommand cmd = connection.CreateCommand();
                 cmd.CommandTimeout = 60;
                 switch (m_fields.Length)
@@ -125,14 +128,15 @@ namespace GameServer
             catch (Exception e)
             {
                 Debug.LogError(e.ToString());
+                SyncName.RecycleMysqlConnection.BroadcastSyncEvent(connection);
                 return false;
             }
         }
         public async Task<bool> TryInsertInto(TElement element)
         {
+            MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
             try
             {
-                MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
                 MySqlCommand cmd = connection.CreateCommand();
                 cmd.CommandTimeout = 60;
                 switch (m_fields.Length)
@@ -169,14 +173,15 @@ namespace GameServer
             catch (Exception e)
             {
                 Debug.LogError(e.ToString());
+                SyncName.RecycleMysqlConnection.BroadcastSyncEvent(connection);
             }
             return false;
         }
         public async Task<bool> TryUpdate(TElement element)
         {
+            MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
             try
             {
-                MySqlConnection connection = await SyncName.FetchMysqlConnection.BroadcastSyncEvent<ETTask<MySqlConnection>>();
                 MySqlCommand cmd = connection.CreateCommand();
                 cmd.CommandTimeout = 60;
                 switch (m_fields.Length)
@@ -213,6 +218,7 @@ namespace GameServer
             catch (Exception e)
             {
                 Debug.LogError(e.ToString());
+                SyncName.RecycleMysqlConnection.BroadcastSyncEvent(connection);
             }
             return false;
         }
