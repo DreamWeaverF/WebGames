@@ -1,40 +1,36 @@
 using ET;
 using GameCommon;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace GameClient
 {
-    public struct SpritePoolData
+    struct SpritePoolData
     {
         public Sprite Sprite;
         public int RefCount;
     }
-
     [GenerateAutoClass]
     public class SpritePool : ScriptableObject
     {
-        private Dictionary<string, SpritePoolData> m_sprites = new Dictionary<string, SpritePoolData>();
+        private Dictionary<string, SpritePoolData> m_spriteDatas = new Dictionary<string, SpritePoolData>();
         private List<string> m_waitRemoves = new List<string>();
         private readonly int m_maxCacheCount = 5;
-
         public async ETTask Load(string address)
         {
-            if (m_sprites.TryGetValue(address, out SpritePoolData value))
+            if (m_spriteDatas.TryGetValue(address, out SpritePoolData value))
             {
                 return;
             }
             value = new SpritePoolData();
             value.Sprite = await Addressables.LoadAssetAsync<Sprite>(address).Task;
-            m_sprites.Add(address, value);
+            m_spriteDatas.Add(address, value);
             m_waitRemoves.Add(address);
         }   
-
         public Sprite Fetch(string address)
         {
-            if (!m_sprites.TryGetValue(address, out SpritePoolData value))
+            if (!m_spriteDatas.TryGetValue(address, out SpritePoolData value))
             {
                 return null;
             }
@@ -47,7 +43,7 @@ namespace GameClient
         }
         public void Recycle(string address)
         {
-            if (!m_sprites.TryGetValue(address, out SpritePoolData value))
+            if (!m_spriteDatas.TryGetValue(address, out SpritePoolData value))
             {
                 return;
             }
@@ -61,11 +57,11 @@ namespace GameClient
             {
                 return;
             }
-            if (m_sprites.TryGetValue(m_waitRemoves[0],out value))
+            if (m_spriteDatas.TryGetValue(m_waitRemoves[0],out value))
             {
                 Addressables.Release(value.Sprite);
                 value.Sprite = null;
-                m_sprites.Remove(address);
+                m_spriteDatas.Remove(address);
             }
             m_waitRemoves.RemoveAt(0);
         }

@@ -14,7 +14,13 @@ namespace GameCommon
             GetType().UnRegisterSyncClass(this);
             UnInit();
         }
-        protected abstract void OnInit();
-        protected abstract void UnInit();
+        protected virtual void OnInit()
+        {
+
+        }
+        protected virtual void UnInit()
+        {
+
+        }
     }
 }

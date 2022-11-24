@@ -28,7 +28,7 @@ namespace GameClient
             m_socket.OnMessage += OnSocketMessage;
             m_socket.OnClose += OnSocketClose;
             m_socket.OnError += OnSocketError;
-            m_socket.ConnectAsync();
+            //m_socket.ConnectAsync();
         }
         protected override void UnInit()
         {

@@ -1,0 +1,77 @@
+<linker>
+  <assembly fullname="GameClient, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="GameClient.LoadingController" preserve="all" />
+    <type fullname="GameClient.SceneController" preserve="all" />
+  </assembly>
+  <assembly fullname="GameCommon, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="GameCommon.ConfigChessMan" preserve="all" />
+    <type fullname="GameCommon.LaunchSettings" preserve="all" />
+    <type fullname="GameCommon.TimerStorage" preserve="all" />
+    <type fullname="GameCommon.ConfigChessManElement" preserve="nothing" serialized="true" />
+    <type fullname="GameCommon.SerializationDictionary`2[System.Type,GameServer.AMessageRequestHander]" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="GameServer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="GameServer.ConfigServerLaunch" preserve="all" />
+    <type fullname="GameServer.DatabaseAccount" preserve="all" />
+    <type fullname="GameServer.DatabaseController" preserve="all" />
+    <type fullname="GameServer.DatabaseRank" preserve="all" />
+    <type fullname="GameServer.DatabaseUser" preserve="all" />
+    <type fullname="GameServer.FightController" preserve="all" />
+    <type fullname="GameServer.FightRespository" preserve="all" />
+    <type fullname="GameServer.MatchFightController" preserve="all" />
+    <type fullname="GameServer.MessageNoticeActionChessManSender" preserve="all" />
+    <type fullname="GameServer.MessageNoticeFightChatSender" preserve="all" />
+    <type fullname="GameServer.MessageNoticeFightResultSender" preserve="all" />
+    <type fullname="GameServer.MessageNoticeFlipChessManSender" preserve="all" />
+    <type fullname="GameServer.MessageNoticeJoinFightSender" preserve="all" />
+    <type fullname="GameServer.MessageNoticeMatchFightSender" preserve="all" />
+    <type fullname="GameServer.MessageRequestActionChessManHander" preserve="all" />
+    <type fullname="GameServer.MessageRequestAdmitDefeatHander" preserve="all" />
+    <type fullname="GameServer.MessageRequestCancelMatchFightHander" preserve="all" />
+    <type fullname="GameServer.MessageRequestFightChatHander" preserve="all" />
+    <type fullname="GameServer.MessageRequestFlipChessManHander" preserve="all" />
+    <type fullname="GameServer.MessageRequestJoinFightHander" preserve="all" />
+    <type fullname="GameServer.MessageRequestLoginHander" preserve="all" />
+    <type fullname="GameServer.MessageRequestMatchFightHander" preserve="all" />
+    <type fullname="GameServer.MessageRequestRankDataHander" preserve="all" />
+    <type fullname="GameServer.MessageRequestUserDataHander" preserve="all" />
+    <type fullname="GameServer.NetworkController" preserve="all" />
+    <type fullname="GameServer.RankController" preserve="all" />
+    <type fullname="GameServer.RankRespository" preserve="all" />
+    <type fullname="GameServer.UserRespository" preserve="all" />
+    <type fullname="GameServer.ConfigServerLaunchElement" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AudioListener" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Camera" preserve="all" />
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.LightmapSettings" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+    <type fullname="UnityEngine.RenderSettings" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.EventSystems.EventSystem" preserve="all" />
+    <type fullname="UnityEngine.EventSystems.StandaloneInputModule" preserve="all" />
+    <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Canvas" preserve="all" />
+  </assembly>
+</linker>

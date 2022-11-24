@@ -19,14 +19,6 @@ namespace GameServer
 
         private List<FightData> m_recyleFight = new List<FightData>();
         private int m_useFightId;
-        protected override void OnInit()
-        {
-
-        }
-        protected override void UnInit()
-        {
-
-        }
         [SynchronizeMethod(SyncName = SyncName.MatchFightSuccess)]
         private void OnMatchFightSuccess(long userId1,long userId2)
         {

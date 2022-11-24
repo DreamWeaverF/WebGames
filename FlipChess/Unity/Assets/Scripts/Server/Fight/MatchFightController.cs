@@ -9,14 +9,6 @@ namespace GameServer
     public class MatchFightController : AMonoBehaviour
     {
         private Dictionary<long, int> m_matchUsers = new Dictionary<long, int>();
-        protected override void OnInit()
-        {
-
-        }
-        protected override void UnInit()
-        {
-
-        }
         [SynchronizeMethod(SyncName = SyncName.MatchFight)]
         private void OnMatchFight(long userId,int userScore)
         {

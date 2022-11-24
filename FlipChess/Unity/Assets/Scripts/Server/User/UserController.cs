@@ -2,6 +2,7 @@ using GameCommon;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Codice.CM.Common.CmCallContext;
 
 namespace GameServer
 {
@@ -21,9 +22,12 @@ namespace GameServer
         {
             m_lastCheckMs = m_timerStorage.MilliSecond;
         }
-        protected override void UnInit()
+        protected override async void UnInit()
         {
-
+            foreach (var var in m_userRespository.UserDatas)
+            {
+                await m_userRespository.DeleteUserData(var.Key);
+            }
         }
         void Update()
         {

@@ -13,5 +13,6 @@ namespace GameCommon
         RecycleMysqlConnection,
         //Client
         MessageRequestSender = 2000,
+        LoadScene,
     }
 }

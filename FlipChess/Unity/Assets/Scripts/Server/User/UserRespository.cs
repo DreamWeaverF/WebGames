@@ -45,6 +45,7 @@ namespace GameServer
             m_databaseUserElement.UserId = userId;
             m_databaseUserElement.UserData = userData;
             await m_databaseUser.TryUpdate(m_databaseUserElement);
+            UserDatas.Remove(userId);
         }
     }
 }

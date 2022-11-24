@@ -1,15 +1,13 @@
-using Codice.Client.Common;
 using ET;
 using GameCommon;
-using Mono.Cecil.Mdb;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data.Common;
+#if !UNITY_WEBGL
 using System.Data.SqlClient;
+#endif
 using System.Reflection;
 using System.Threading.Tasks;
-using UnityEditor.MemoryProfiler;
 using UnityEngine;
 
 namespace GameServer
